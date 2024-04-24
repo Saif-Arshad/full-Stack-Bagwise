@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 // import Logo from '../../../public/Images/Logo/icon.png'
-import logoLight from '../../../public/Images/Logo/light.png'
-import logoDark from '../../../public/Images/Logo/Dark.png'
-import Account from '@/Components/Account/Account';
+import Account from '@/Components/Header/Account/Account';
 import Login from '../Buttons/LoginandSignUp/Login';
 import Navigation from '@/Components/Header/Navigation';
+import Cart from '@/Components/Header/Cart/Cart';
+import Logo from "@/Components/Header/Logo/Logo"
 
 function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,22 +17,17 @@ function Nav() {
   };
 
   return (
-    <div>
-      <nav className="bg-white border-gray-200 py-2.5 dark:bg-gray-900">
+    <div className=''>
+      <nav className="bg-white border-gray-200 py-2.5 dark:bg-gray-900 ">
         <div className="flex flex-wrap items-center sm:justify-between justify-center max-w-screen-xl px-4 mx-auto">
           <Link href="/" >
           
-            <Image
-              src={logoLight}
-              className="h-9 object-cover mt-3"
-              alt="Omni Logo"
-              height={150}
-              width={130}
-            />
+                <Logo/>
              
           </Link>
           <div className="flex items-center gap-x-12 mt-5 ml-2  sm:gap-x-0 sm:mt-0 sm:ml-0 lg:order-2">
-           <Account/>
+           {/* <Account/> */}
+           <Cart/>
             <div className="hidden mt-2 mr-4 sm:inline-block">
               <span></span>
             </div>

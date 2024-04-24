@@ -1,9 +1,13 @@
 import React from 'react'
+import Products from '@/Components/Products/Products'
 
 function page() {
   return (
-    <div >
-      <h1>Hello World</h1>
+    <div className='w-full flex flex-wrap justify-center'>
+      <div className='w-10/12 mt-10'>
+
+      <Products />
+      </div>
     </div>
   )
 }
