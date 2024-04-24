@@ -33,7 +33,7 @@ function Cart() {
   return (
     <div className=''>
      <BsCartCheck size={20} onClick={cartHandler} className='cursor-pointer' color='purple' />
-     <div className={`overflow-y-scroll h-3/4 ${!cartVisibility? "translate-x-96" : "translate-x-0"} transition-all rounded-xl w-60 md:w-4/12 -right-3 md:-right-14 top-24 bg-slate-100 fixed`}>
+     <div className={`overflow-y-scroll h-3/4 ${!cartVisibility? "translate-x-full" : "translate-x-0"} transition-all rounded-xl w-60 md:w-4/12 -right-3 md:-right-14 top-24 bg-slate-100 fixed`}>
         <div  className='px-4 py-2 '>
           <div>
         <h1  className='text-xl font-bold'>Cart</h1>
