@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Nav from "@/Components/Header/Nav";
 import { Providers } from "@/Redux/Provider"
-import 'mdb-react-ui-kit/dist/css/mdb.min.css';
-import "@fortawesome/fontawesome-free/css/all.min.css";
-
+import Header from '@/Components/shared/header/Header'
 
 export const metadata: Metadata = {
   title: "Bagwise - Best place to buy bags",
@@ -18,10 +15,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="min-w-screen overflow-x-hidden relative">
+      <body>
 
         <Providers>
-        <Nav/>
+          <Header/>
         {children}
       </Providers>
         </body>
