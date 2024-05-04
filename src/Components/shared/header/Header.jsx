@@ -1,5 +1,5 @@
 import React from 'react'
-import Nav from '@/Components/shared/header/header-subcomponent/Nav'
+import Nav from '@/Components/shared/header/headersubcomponent/Nav'
 
 function Header() {
   return (
