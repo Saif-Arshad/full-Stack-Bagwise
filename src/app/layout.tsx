@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Providers } from "@/Redux/Provider"
-import Header from '@/Components/shared/header/Header'
+// import { Providers } from "@/Redux/Provider"
 
 export const metadata: Metadata = {
   title: "Bagwise - Best place to buy bags",
@@ -17,10 +16,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
 
-        <Providers>
-          <Header/>
+        {/* <Providers> */}
         {children}
-      </Providers>
+      {/* </Providers> */}
         </body>
     </html>
   );
