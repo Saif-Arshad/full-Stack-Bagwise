@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { store } from "../store/store";
 
 
-export function Providers({ children }) {
+export function reduxProviders({ children }) {
   return(
    <Provider store={store}>
     {children}
