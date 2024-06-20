@@ -12,7 +12,6 @@ import ToggleTheme from "./ToggleTheme";
 import { IoSearch } from "react-icons/io5";
 import SideBar from "./SideBar";
 function ClientSideNavBar() {
-    const [open, setOpen] = useState(false)
   return (
     <nav className="w-full fixed backdrop-blur-lg shadow-sm  dark:bg-black bg-white   ">
       <div className="flex gap-y-2 sm:gap-y-0 flex-col sm:flex-row items-center justify-center sm:justify-between  w-full px-4 md:px-8 py-2">
@@ -22,14 +21,14 @@ function ClientSideNavBar() {
             width={150}
             height={150}
             alt="Bagwise Logo"
-            className="object-contain dark:hidden"
+            className="object-cover dark:hidden"
           />
           <Image
             src={ASSETS.darkLogo}
-            width={150}
+            width={120}
             height={150}
             alt="Bagwise Logo"
-            className="object-contain dark:block hidden"
+            className="object-cover dark:block hidden"
           />
         </div>
         <div className="min-w-[30vw] hidden sm:flex">
@@ -46,16 +45,12 @@ function ClientSideNavBar() {
             </IconButton>
           </Tooltip>
        
-          <Tooltip title="Search" className="sm:hidden" onClick={() => setOpen(true)} >
+          {/* <Tooltip title="Search" className="sm:hidden" onClick={() => setOpen(true)} >
             <IconButton>
               <IoSearch size={25} className="dark:text-gray-300 " />
             </IconButton>
-          </Tooltip>
-          {/* <Tooltip title="Register">
-            <IconButton>
-              <FaRegUserCircle size={25} className="dark:text-gray-300 " />
-            </IconButton>
           </Tooltip> */}
+       
             <span className="px-2">
 
           <ToggleTheme />

@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import ClientSideNavBar from "@/components/shared/navBar/clientSideNavBar";
 import "@/app/globals.css";
 import Footer from "@/components/shared/footer/Footer";
-import {ThemeProviders} from '@/providers/ThemeProvider'
-import {ReduxProviders} from '@/providers/ReduxProvider'
 
 export const metadata: Metadata = {
   title: "Bagwise",
@@ -22,7 +20,7 @@ export default function RootLayout({
         <div className="pt-24">
         {children}
         </div>
-        {/* <Footer/> */}
+        <Footer/>
         </body>
     </html>
   );

@@ -11,6 +11,7 @@ import { usePathname } from 'next/navigation';
 import { FaShop } from "react-icons/fa6";
 import { MdAccountCircle } from "react-icons/md";
 import { IoLogIn } from "react-icons/io5";
+import SearchInput from './SearchInput';
 function SideBar() {
 
 const pathname = usePathname();
@@ -95,7 +96,15 @@ return (
         </div>
           </span>
         </Link>
-          <ul className="space-y-3 font-medium mt-7">
+
+
+<div className='w-full my-4 mb-6'>
+<SearchInput/>
+</div>
+
+
+
+          <ul className="space-y-3 font-medium ">
             {
 
 
