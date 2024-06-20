@@ -1,5 +1,6 @@
-export const globalImage = {
+export const ASSETS = {
 
-    logo:"/Images/Logo/light.png"
+    lightLogo:"/Images/Logo/light.png",
+    darkLogo:"/Images/Logo/Dark.png"
 
 }

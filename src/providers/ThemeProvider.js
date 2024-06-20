@@ -3,7 +3,7 @@
 import {ThemeProvider} from "next-themes"
 
 
-export function themeProviders({children}) {
+export function ThemeProviders({children}) {
     return (
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             {children}
