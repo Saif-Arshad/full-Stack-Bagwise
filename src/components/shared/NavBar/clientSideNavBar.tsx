@@ -8,7 +8,6 @@ import Badge from "@mui/material/Badge";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
-import { FaRegUserCircle } from "react-icons/fa";
 import ToggleTheme from "./ToggleTheme";
 import { IoSearch } from "react-icons/io5";
 import SideBar from "./SideBar";
