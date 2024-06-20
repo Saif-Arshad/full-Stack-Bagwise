@@ -1,41 +1,60 @@
 "use client"
 
-import React from 'react'
+import React from 'react';
 import { useTheme } from "next-themes";
-import Tooltip from '@mui/material/Tooltip';
-import IconButton from "@mui/material/IconButton";
-
-
+import './ToggleTheme.css';
 
 function ToggleTheme() {
-    const { theme, setTheme } = useTheme()
-    const toggleTheme = () => {
-        console.log(theme)
-            if (theme === 'dark') {
-                setTheme('light');
-            } else {
-          setTheme('dark');
-        }
-      };
-  return (
-   <>
-   <Tooltip title="Toggle Theme">
-    <IconButton onClick={toggleTheme} className='h-11 w-11 '>
-   {/* <button rounded-lg p-2 hover:scale-105 "> */}
-    <svg className="fill-black block dark:hidden" fill="currentColor" viewBox="0 0 20 20">
-        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-    </svg>
-    <svg className="fill-black hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
-        <path
-            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-            fillRule="evenodd" clipRule="evenodd"></path>
-    </svg>
-{/* </button> */}
-            </IconButton>
-    </Tooltip>
+  const { theme, setTheme } = useTheme();
 
-   </>
-  )
+  const toggleTheme = () => {
+    if (theme === 'dark') {
+      setTheme('light');
+    } else {
+      setTheme('dark');
+    }
+  };
+
+  return (
+    <label className="bb8-toggle">
+      <input
+        className="bb8-toggle__checkbox"
+        type="checkbox"
+        checked={theme === 'dark'} 
+        onChange={toggleTheme} 
+      />
+      <div className="bb8-toggle__container">
+        <div className="bb8-toggle__scenery">
+          <div className="bb8-toggle__star" />
+          <div className="bb8-toggle__star" />
+          <div className="bb8-toggle__star" />
+          <div className="bb8-toggle__star" />
+          <div className="bb8-toggle__star" />
+          <div className="bb8-toggle__star" />
+          <div className="bb8-toggle__star" />
+          <div className="tatto-1" />
+          <div className="tatto-2" />
+          <div className="gomrassen" />
+          <div className="hermes" />
+          <div className="chenini" />
+          <div className="bb8-toggle__cloud" />
+          <div className="bb8-toggle__cloud" />
+          <div className="bb8-toggle__cloud" />
+        </div>
+        <div className="bb8">
+          <div className="bb8__head-container">
+            <div className="bb8__antenna" />
+            <div className="bb8__antenna" />
+            <div className="bb8__head" />
+          </div>
+          <div className="bb8__body" />
+        </div>
+        <div className="artificial__hidden">
+          <div className="bb8__shadow" />
+        </div>
+      </div>
+    </label>
+  );
 }
 
-export default ToggleTheme
+export default ToggleTheme;

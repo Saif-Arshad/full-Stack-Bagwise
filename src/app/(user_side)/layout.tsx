@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import ClientSideNavBar from "@/components/shared/NavBar/clientSideNavBar";
+import ClientSideNavBar from "@/components/shared/navBar/clientSideNavBar";
 import "@/app/globals.css";
+import Footer from "@/components/shared/footer/Footer";
 import {ThemeProviders} from '@/providers/ThemeProvider'
 import {ReduxProviders} from '@/providers/ReduxProvider'
 
@@ -15,16 +16,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
-      <ThemeProviders>
-  <ReduxProviders>
         <ClientSideNavBar/>
         <div className="pt-24">
         {children}
         </div>
-  </ReduxProviders>
-</ThemeProviders>
+        {/* <Footer/> */}
         </body>
     </html>
   );
