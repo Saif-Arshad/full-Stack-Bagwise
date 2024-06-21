@@ -17,7 +17,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body>
         <ClientSideNavBar/>
-        <div className="pt-24">
+        <div className="pt-24 bg-white dark:bg-black">
         {children}
         </div>
         <Footer/>

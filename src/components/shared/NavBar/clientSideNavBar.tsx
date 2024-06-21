@@ -13,7 +13,7 @@ import { IoSearch } from "react-icons/io5";
 import SideBar from "./SideBar";
 function ClientSideNavBar() {
   return (
-    <nav className="w-full fixed backdrop-blur-lg shadow-sm  dark:bg-black bg-white   ">
+    <nav className="w-full fixed backdrop-blur-lg shadow-sm  dark:bg-black bg-white z-50   ">
       <div className="flex gap-y-2 sm:gap-y-0 flex-col sm:flex-row items-center justify-center sm:justify-between  w-full px-4 md:px-8 py-2">
         <div className="">
           <Image
