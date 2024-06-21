@@ -14,9 +14,11 @@
     "@fortawesome/fontawesome-free": "^6.5.2",
     "@mui/material": "^5.15.20",
     "@reduxjs/toolkit": "^2.2.3",
+    "bcrypt": "^5.1.1",
     "mdb-react-ui-kit": "^8.0.0",
     "mongoose": "^8.4.1",
     "next": "14.2.2",
+    "next-auth": "^4.24.7",
     "next-themes": "^0.3.0",
     "react": "^18",
     "react-dom": "^18",
@@ -25,6 +27,7 @@
     "styled-components": "^6.1.9"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

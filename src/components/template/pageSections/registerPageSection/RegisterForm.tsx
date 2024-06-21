@@ -4,10 +4,11 @@ import React, { useRef, useState } from 'react';
 import { IoIosArrowForward } from "react-icons/io";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 
+
 function RegisterForm() {
     const [showPassword, setShowPassword] = useState(false);
     const passwordInputRef = useRef<HTMLInputElement>(null);
-
+    
     const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         alert("hello");
@@ -21,7 +22,7 @@ function RegisterForm() {
     };
 
     return (
-        <div className='w-full lg:w-6/12 flex flex-col'>
+        <div className='w-full'>
             <h1 className='text-xl md:text-3xl font-bold my-5 capitalize'>
                 Sign up with
             </h1>
@@ -76,10 +77,10 @@ function RegisterForm() {
                         </p>
                     </div>
                 </div>
-                <button className="flex flex-row items-center justify-between w-full md:w-10/12 xl:w-9/12 capitalize bg-slate-950 text-white px-4 text-xl py-2 rounded-xl hover:bg-slate-900 transition-all dark:hover:bg-slate-950 my-8 dark:bg-slate-900 dark:text-white">
+                {/* <button className="flex flex-row items-center justify-between w-full md:w-10/12 xl:w-9/12 capitalize bg-slate-950 text-white px-4 text-xl py-2 rounded-xl hover:bg-slate-900 transition-all dark:hover:bg-slate-950 my-8 dark:bg-slate-900 dark:text-white">
                     register
                     <IoIosArrowForward size={23} />
-                </button>
+                </button> */}
             </form>
         </div>
     );
