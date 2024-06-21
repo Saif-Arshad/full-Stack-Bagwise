@@ -40,21 +40,12 @@ function ClientSideNavBar() {
           <Tooltip title="Your Cart">
             <IconButton>
               <Badge badgeContent={4} color="primary">
-                <MdOutlineAddShoppingCart size={25} className="dark:text-gray-300 " />
+                <MdOutlineAddShoppingCart size={25}  className=" dark:text-gray-300 " />
               </Badge>
             </IconButton>
           </Tooltip>
-       
-          {/* <Tooltip title="Search" className="sm:hidden" onClick={() => setOpen(true)} >
-            <IconButton>
-              <IoSearch size={25} className="dark:text-gray-300 " />
-            </IconButton>
-          </Tooltip> */}
-       
-            <span className="px-2">
 
-          <ToggleTheme />
-            </span>
+       
     <SideBar/>
           <div></div>
         </div>

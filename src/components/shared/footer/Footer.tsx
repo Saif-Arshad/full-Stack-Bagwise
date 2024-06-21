@@ -5,10 +5,16 @@ import Link from 'next/link'
 import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 function Footer() {
+  const footerLinks=[
+    {
+      title:"Home",
+      link:"/"
+    },
+  ]
   return (
    <footer className="bg-white shadow-md dark:bg-black">
   <div className="container mx-auto p-0 md:p-8 xl:px-0">
-    <div className="mx-auto max-w-7xl px-6 pb-10 pt-16">
+    <div className="mx-auto max-w-7xl px-6  pt-16">
       <div className="xl:grid xl:grid-cols-3 xl:gap-8">
         <div className="space-y-4">
           <div>
@@ -130,7 +136,7 @@ function Footer() {
           </div>
         </div>
       </div>
-      <div className="mt-16 border-t border-gray-400/30  pt-8 sm:mt-20 lg:mt-24">
+      <div className="mt-16 border-t border-gray-400/30  pt-8 sm:mt-20 lg:mt-24 ">
         <div className="text-md text-center  text-black dark:text-white">
           Copyright © 2024 . Crafted with
           <span className=" text-black dark:text-white  mx-1 ml-2">♥</span> by 
