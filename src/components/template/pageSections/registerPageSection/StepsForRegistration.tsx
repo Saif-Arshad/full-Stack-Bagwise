@@ -52,8 +52,10 @@ export default function RegisterationSteps() {
   };
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <Stepper activeStep={activeStep} orientation="vertical">
+    <Box sx={{ width: '100%', 
+     }}>
+      <Stepper activeStep={activeStep}
+       orientation="horizontal">
         {steps.map((label, index) => {
           const stepProps: { completed?: boolean } = {};
           const labelProps: { optional?: React.ReactNode } = {};
@@ -64,8 +66,10 @@ export default function RegisterationSteps() {
             stepProps.completed = false;
           }
           return (
-            <Step key={label} {...stepProps}>
-              <StepLabel {...labelProps}>{label}</StepLabel>
+            <Step key={label} {...stepProps} className="">
+              <StepLabel  
+              sx={{ color:"black" }}
+              {...labelProps}>{label}</StepLabel>
             </Step>
           );
         })}

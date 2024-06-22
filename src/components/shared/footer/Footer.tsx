@@ -140,7 +140,7 @@ function Footer() {
         <div className="text-md text-center  text-black dark:text-white">
           Copyright © 2024 . Crafted with
           <span className=" text-black dark:text-white  mx-1 ml-2">♥</span> by 
-          <Link rel="noopener" className='mx-2 hover:text-blue-800' href="/https://saifwebdev.netlify.app/" target="_blank">Saif Ur Rehman.
+          <Link rel="noopener" className='mx-2 hover:text-blue-800' href="https://saifwebdev.netlify.app/" target="_blank">Saif Ur Rehman.
           </Link>
         </div>
       </div>

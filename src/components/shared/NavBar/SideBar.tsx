@@ -36,7 +36,7 @@ function SideBar() {
     {
       title: "Login Account",
       icon: <IoLogIn size={25} />,
-      link: "/login"
+      link: "/login-account"
     },
     {
       title: "Create Account",
