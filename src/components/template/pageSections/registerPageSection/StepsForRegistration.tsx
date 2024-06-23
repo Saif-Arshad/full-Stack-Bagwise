@@ -1,117 +1,68 @@
-"use client";
+"use client"
 
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import React, { useState } from 'react';
 import RegisterForm from './RegisterForm';
 import UserProfileSetUp from './UserProfileSetUp';
 import VarifyUserOTP from './VarifyUserOTP';
+import { IoIosArrowForward } from 'react-icons/io';
 
-const steps = ['Create Your Account', 'Set Up Your Profile', 'Verify Your Email'];
-
-export default function RegisterationSteps() {
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [skipped, setSkipped] = React.useState(new Set<number>());
-
-  const isStepOptional = (step: number) => step === 1;
-
-  const isStepSkipped = (step: number) => skipped.has(step);
+const MultiStepSignUpForm = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    lastName: '',
+    email: '',
+    password: '',
+    avatar: '',
+    address: '',
+  });
+  const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => {
-    let newSkipped = skipped;
-    if (isStepSkipped(activeStep)) {
-      newSkipped = new Set(newSkipped.values());
-      newSkipped.delete(activeStep);
-    }
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped(newSkipped);
   };
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleSkip = () => {
-    if (!isStepOptional(activeStep)) {
-      throw new Error("You can't skip a step that isn't optional.");
-    }
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped((prevSkipped) => {
-      const newSkipped = new Set(prevSkipped.values());
-      newSkipped.add(activeStep);
-      return newSkipped;
-    });
+  const handleSubmit = (e:any) => {
+    e.preventDefault();
+    // Perform form submission logic here
+    alert('Form submitted!');
   };
 
-  const handleReset = () => {
-    setActiveStep(0);
+  const getStepContent = (step:number) => {
+    switch (step) {
+      case 0:
+        return <RegisterForm formData={formData} setFormData={setFormData} />;
+      case 1:
+        return <UserProfileSetUp formData={formData} setFormData={setFormData} />;
+      case 2:
+        return <VarifyUserOTP />;
+      default:
+        return 'Unknown step';
+    }
   };
 
   return (
-    <Box sx={{ width: '100%', 
-     }}>
-      <Stepper activeStep={activeStep}
-       orientation="horizontal">
-        {steps.map((label, index) => {
-          const stepProps: { completed?: boolean } = {};
-          const labelProps: { optional?: React.ReactNode } = {};
-          if (isStepOptional(index)) {
-            labelProps.optional = <Typography variant="caption">Optional</Typography>;
-          }
-          if (isStepSkipped(index)) {
-            stepProps.completed = false;
-          }
-          return (
-            <Step key={label} {...stepProps} className="">
-              <StepLabel  
-              sx={{ color:"black" }}
-              {...labelProps}>{label}</StepLabel>
-            </Step>
-          );
-        })}
-      </Stepper>
-      <div>
-        {activeStep === steps.length ? (
-          <React.Fragment>
-            <Typography sx={{ mt: 2, mb: 1 }}>
-              All steps completed - you finished
-            </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 ,width:"70%"}}>
-              <Box sx={{ flex: '1 1 auto' }} />
-              <Button onClick={handleReset}>Reset</Button>
-            </Box>
-          </React.Fragment>
-        ) : (
-          <React.Fragment>
-            {activeStep === 0 && <RegisterForm />}
-            {activeStep === 1 && <UserProfileSetUp />}
-            {activeStep === 2 && <VarifyUserOTP />}
-            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2,width:"70%" }}>
-              <Button
-                color="inherit"
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                sx={{ mr: 1 }}
-              >
-                Back
-              </Button>
-              <Box sx={{ flex: '1 1 auto' }} />
-              {isStepOptional(activeStep) && (
-                <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
-                  Skip
-                </Button>
-              )}
-              <Button onClick={handleNext}>
-                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-              </Button>
-            </Box>
-          </React.Fragment>
-        )}
-      </div>
-    </Box>
+    <div className='w-full'>
+      <h1 className='text-xl md:text-3xl font-bold my-5 capitalize'>Sign up</h1>
+      <form onSubmit={handleSubmit}>
+        {getStepContent(activeStep)}
+        <div className='flex flex-row items-center justify-between w-full md:w-10/12 xl:w-9/12 capitalize bg-slate-950 text-white px-4 text-xl py-2 rounded-xl hover:bg-slate-900 transition-all dark:hover:bg-slate-950 my-8 dark:bg-slate-900 dark:text-white'>
+          {activeStep > 0 && (
+            <button type='button' className='flex flex-row items-center' onClick={handleBack}>
+              Back
+            </button>
+          )}
+          <button type='button' onClick={handleNext}>
+            {activeStep === 2 ? 'Register' : 'Next'}
+            <IoIosArrowForward size={23} />
+          </button>
+        </div>
+      </form>
+    </div>
   );
-}
+};
+
+export default MultiStepSignUpForm;
