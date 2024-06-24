@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react';
+import React,{useState} from 'react';
 import { useFormikContext, Field } from 'formik';
 import { FormData } from '@/validations/YUP';
 import { FaPencilAlt } from 'react-icons/fa';
@@ -13,10 +13,13 @@ interface UserProfileSetUpProps {
 
 const UserProfileSetUp: React.FC<UserProfileSetUpProps> = ({ formData, setFormData }) => {
   const { setFieldValue } = useFormikContext<FormData>();
-
+  const [userImage,setUserImage] = useState("https://res.cloudinary.com/di6r722sv/image/upload/v1719230475/kj3qiomxuis6sjiu3dwl.png")
   const handleImageUpload = (result: any) => {
+    console.log("🚀 ~ handleImageUpload ~ result:", result)
+    
     if (result?.info) {
-      setFieldValue('avatar', result.info.url);
+      setUserImage(result.info.url)
+      setFieldValue('avatar', userImage);
     }
   };
 
@@ -24,36 +27,33 @@ const UserProfileSetUp: React.FC<UserProfileSetUpProps> = ({ formData, setFormDa
     <div className='w-full'>
       <h1 className='text-xl md:text-3xl font-bold my-5'>Set Up Your Profile</h1>
       <div className='flex flex-col'>
-        <label htmlFor='avatar' className='text-lg md:text-xl font-semibold'>
-          Upload Avatar
+        <label htmlFor='avatar' className='text-lg md:text-xl my-4 font-semibold'>
+          Upload Avatar <span className='text-sm'>(Optional) </span>
         </label>
         <CldUploadWidget
           onSuccess={(result, widget) => {
             handleImageUpload(result);
-            // widget.close(); // Uncomment if you want to close the widget after upload
           }}
           uploadPreset="bagwise"
         >
           {({ open }) => (
-            <div className='relative cursor-pointer' onClick={() => open()}>
+            <div className=' cursor-pointer hover:backdrop-blur-2xl' onClick={() => open()} >
               <Image
-                src={formData.avatar}
-                height={300}
+                src={formData.avatar ? formData.avatar : userImage}
+                height={200}
                 alt='Avatar'
                 width={100}
-                className='rounded-full'
+                className='rounded-full h-20 w-20 object-cover'
               />
-              <span className="absolute z-10 bottom-5 left-1">
-                <FaPencilAlt size={20} className='text-blue' />
-              </span>
+           
             </div>
           )}
         </CldUploadWidget>
         
       </div>
-      <div className='flex flex-col'>
+      <div className='flex flex-col my-4'>
         <label htmlFor='address' className='text-lg md:text-xl font-semibold'>
-          Enter Your Address
+          Enter Your Address <span className='text-sm'>(Optional) </span>
         </label>
         <Field
           type='text'

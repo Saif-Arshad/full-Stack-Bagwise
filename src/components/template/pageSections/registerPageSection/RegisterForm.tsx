@@ -36,7 +36,7 @@ const RegisterForm: React.FC<RegisterFormProps> = () => {
           className='w-full p-2 rounded-lg mb-2 mt-4 focus:ring-2 focus:ring-slate-200 outline-none border border-slate-200'
         />
         {touched.firstName && errors.firstName ? (
-          <div className='text-red-600'>{errors.firstName}</div>
+          <div className='text-red-600 dark:text-red-500'>{errors.firstName}</div>
         ) : null}
       </div>
       <div className='flex flex-col'>
@@ -51,7 +51,7 @@ const RegisterForm: React.FC<RegisterFormProps> = () => {
           className='w-full p-2 rounded-lg mb-2 mt-1 focus:ring-2 focus:ring-slate-200 outline-none border border-slate-200'
         />
         {touched.lastName && errors.lastName ? (
-          <div className='text-red-600'>{errors.lastName}</div>
+          <div className='text-red-600 dark:text-red-500'>{errors.lastName}</div>
         ) : null}
       </div>
       <div className='flex flex-col'>
@@ -82,7 +82,7 @@ const RegisterForm: React.FC<RegisterFormProps> = () => {
             className='w-full p-2 rounded-lg mb-2 mt-1 focus:ring-2 focus:ring-slate-200 outline-none border border-slate-200'
           />
           {touched.email && errors.email ? (
-            <div className='text-red-600'>{errors.email}</div>
+            <div className='text-red-600 dark:text-red-500'>{errors.email}</div>
           ) : null}
         </div>
         <div className='flex flex-col'>
@@ -101,7 +101,7 @@ const RegisterForm: React.FC<RegisterFormProps> = () => {
             </span>
           </div>
           {touched.password && errors.password ? (
-            <div className='text-red-600'>{errors.password}</div>
+            <div className='text-red-600 dark:text-red-500'>{errors.password}</div>
           ) : null}
         </div>
       </div>

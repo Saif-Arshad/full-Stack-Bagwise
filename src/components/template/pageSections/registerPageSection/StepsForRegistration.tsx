@@ -5,8 +5,10 @@ import { Formik, Form, FormikHelpers } from 'formik';
 import { FormData } from '@/validations/YUP';
 import { signUpSchema, profileSchema } from '@/validations/YUP';
 import RegisterForm from './RegisterForm';
+import { IoIosArrowBack } from "react-icons/io";
 import UserProfileSetUp from './UserProfileSetUp';
 import VarifyUserOTP from './VarifyUserOTP';
+import { IoIosArrowForward } from "react-icons/io";
 
 const MultiStepSignUpForm: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
@@ -15,8 +17,7 @@ const MultiStepSignUpForm: React.FC = () => {
     gender: '',
     email: '',
     password: '',
-    //@ts-ignore
-    avatar: "https://res.cloudinary.com/di6r722sv/image/upload/v1719230475/kj3qiomxuis6sjiu3dwl.png",
+    avatar: "",
     address: '',
   });
   const [activeStep, setActiveStep] = useState(0);
@@ -71,15 +72,17 @@ const MultiStepSignUpForm: React.FC = () => {
               {activeStep > 0 && !isProfileSubmitted && (
                 <button
                   type='button'
+                  className=' bg-black mr-4 dark:bg-[#959598] text-white font-semibold flex gap-x-1 items-center p-2 rounded-md mt-5'
                   onClick={() => setActiveStep(activeStep - 1)}
-                  className='mr-4'
                 >
+                  <IoIosArrowBack size={20} />
                   Back
                 </button>
               )}
               {!isProfileSubmitted && (
-                <button type='submit' disabled={isSubmitting}>
+                <button type='submit' disabled={isSubmitting} className=' bg-black dark:bg-[#959598] text-white font-semibold flex gap-x-1 items-center p-2 rounded-md mt-5'>
                   {isLastStep ? 'Submit' : 'Next'}
+                  <IoIosArrowForward size={20} />
                 </button>
               )}
             </div>

@@ -69,7 +69,11 @@ function SideBar() {
 
           <ul className="space-y-3 font-medium ">
             {navLinks.map((item, index) => (
-              <li key={index} onClick={() => setSidebarOpen(false)}>
+              <li key={index} onClick={() => 
+                setTimeout(() => {
+                  setSidebarOpen(false)
+                }, 200)
+              }>
                 <Link href={item.link} className={`flex gap-1 items-center p-2 text-gray-900 dark:text-white rounded-lg ${pathname === item.link ? "bg-gray-200 dark:bg-[#101011]" : "hover:bg-gray-100 dark:hover:bg-[#101011]"} group`}>
                   <span className={`w-5 h-6 text-gray-500 transition duration-75 ${pathname === item.link ? "text-gray-900 dark:text-white" : "group-hover:text-gray-900 dark:group-hover:text-white"}`}>
                     {item.icon}
@@ -84,7 +88,9 @@ function SideBar() {
 
           <ul className="space-y-3 font-medium">
             {navLinks2.map((item, index) => (
-              <li key={index} onClick={() => setSidebarOpen(false)}>
+              <li key={index} onClick={() =>  setTimeout(() => {
+                setSidebarOpen(false)
+              }, 200)}>
                 <Link href={item.link} className={`flex gap-1 items-center p-2 text-gray-900 dark:text-white rounded-lg ${pathname === item.link ? "bg-gray-200 dark:bg-[#101011]" : "hover:bg-gray-100 dark:hover:bg-[#101011]"} group`}>
                   <span className={`w-5 h-6 text-gray-500 transition duration-75 ${pathname === item.link ? "text-gray-900 dark:text-white" : "group-hover:text-gray-900 dark:group-hover:text-white"}`}>
                     {item.icon}

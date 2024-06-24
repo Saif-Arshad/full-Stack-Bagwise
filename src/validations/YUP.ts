@@ -4,7 +4,7 @@ export interface FormData {
     gender?: string;
     email: string;
     password: string;
-    avatar?: File | null;
+    avatar?: string;
     address?: string;
   }
   
