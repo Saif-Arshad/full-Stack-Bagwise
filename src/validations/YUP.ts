@@ -1,16 +1,26 @@
-import * as yup from 'yup'
-
-export const signUpSchema = yup.object().shape({
-    firstName: yup.string().required('First name is required'),
-    lastName: yup.string().required('Last name is required'),
-    email: yup
-        .string()
-        .required('Email is required')
-        .email('Email is invalid'),
-    password: yup
-        .string()
-        .required('Password is required')
-        .min(8, 'Password must be at least 8 characters')
-        .max(40, 'Password must not exceed 40 characters'),
- 
-})
+export interface FormData {
+    firstName: string;
+    lastName: string;
+    gender?: string;
+    email: string;
+    password: string;
+    avatar?: File | null;
+    address?: string;
+  }
+  
+  import * as Yup from 'yup';
+  
+  export const signUpSchema = Yup.object().shape({
+    firstName: Yup.string().required('First Name is required'),
+    lastName: Yup.string().required('Last Name is required'),
+    email: Yup.string().email('Invalid email').required('Email is required'),
+    password: Yup.string()
+      .min(8, 'Password must be at least 8 characters')
+      .required('Password is required'),
+  });
+  
+  export const profileSchema = Yup.object().shape({
+    avatar: Yup.string(),
+    address: Yup.string(),
+  });
+  
