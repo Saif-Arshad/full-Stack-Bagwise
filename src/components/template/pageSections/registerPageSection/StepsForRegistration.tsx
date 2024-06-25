@@ -9,8 +9,10 @@ import { IoIosArrowBack } from "react-icons/io";
 import UserProfileSetUp from './UserProfileSetUp';
 import VarifyUserOTP from './VarifyUserOTP';
 import { IoIosArrowForward } from "react-icons/io";
+import useSignUp from '@/customHooks/useSignUp';
 
 const MultiStepSignUpForm: React.FC = () => {
+  const {loading,error,response,signUp} = useSignUp()
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
     lastName: '',
@@ -46,6 +48,16 @@ const MultiStepSignUpForm: React.FC = () => {
     if (activeStep === 1) {
       setIsProfileSubmitted(true);
       setActiveStep(activeStep + 1);
+      const userValues = {
+        name : values.firstName + " " + values.lastName,
+        email: values.email,
+        password: values.password,
+        gender: values.gender,
+        avatar : values.avatar ,
+        address : values.address ,
+      }
+      signUp(userValues);
+      console.log(response)
       console.log('Form Data:', values);
     } else {
       setFormData(values);

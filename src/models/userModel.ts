@@ -24,8 +24,7 @@ const userSchema = new mongoose.Schema({
     default: false,
   },
   gender:{
-    type: Boolean,
-    default: false,
+    type: String,
   },
   avatar: {
     type: String,
@@ -34,5 +33,4 @@ const userSchema = new mongoose.Schema({
     type:String
   }
 });
-
-export const User = mongoose.models || mongoose.model("User", userSchema);
+export const User = mongoose.models.User || mongoose.model("User", userSchema);

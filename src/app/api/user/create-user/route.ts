@@ -1,35 +1,35 @@
-import { NextRequest,NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { ConnectDB } from "@/database/ConnectDB";
-import { User } from "@/models/userModel";
+import {User} from "@/models/userModel"; 
 
+export async function POST(req: NextRequest) {
+    const userFormData = await req.json();
+    console.log("🚀 ~ POST ~ userFormData:", userFormData);
+    await ConnectDB();
 
-export async function POST(req:NextRequest){
-    const userFormData =await req.json()
-    console.log("🚀 ~ POST ~ userFormData:", userFormData)
-    await ConnectDB()
     try {
-            const userModel =await new User.create(
-                {
+        const duplicateEmail = await User.findOne({ email: userFormData?.email });
+
+        if (duplicateEmail) {
+            return NextResponse.json({
+                success: false,
+                error: {
+                    message: "User email already exists"
                 }
-            )
-            await userModel.save()
+            });
+        }
+        const newUser = new User(userFormData); 
 
-            return NextResponse.json(
-             {
-                sucess:true,
-                message:"user created sucessfully"
-             }   
-            )
-    } catch (error) {
-          return NextResponse.json({
-             sucess:false,
-                message:`There are some error in user creation ${error}`
-          })
+        await newUser.save(); 
+        
+        return NextResponse.json({
+            success: true,
+            message: "User created successfully"
+        });
+    } catch (error: any) {
+        return NextResponse.json({
+            success: false,
+            message: `There was an error creating the user: ${error.message}`
+        });
     }
-
-    
-
-
-
-
 }

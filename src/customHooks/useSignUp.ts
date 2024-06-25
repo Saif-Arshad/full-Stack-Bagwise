@@ -1,4 +1,3 @@
-import { AnyNaptrRecord } from 'dns';
 import { useState } from 'react';
 
 const useSignUp = () => {
@@ -6,13 +5,13 @@ const useSignUp = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const signUp = async (data:any, url:string) => {
+  const signUp = async (data:any) => {
     setLoading(true);
     setError(null);
     setResponse(null);
 
     try {
-      const res = await fetch(url, {
+      const res = await fetch("/api/user/create-user", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
