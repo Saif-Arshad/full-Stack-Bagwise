@@ -1,10 +1,11 @@
 "use client"
 
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import { useFormikContext, Field } from 'formik';
 import { FormData } from '@/validations/YUP';
 import { FaPencilAlt } from 'react-icons/fa';
 import { CldUploadWidget } from 'next-cloudinary';
+import { BsPencil } from "react-icons/bs";
 import Image from 'next/image';
 interface UserProfileSetUpProps {
   formData: FormData;
@@ -19,9 +20,11 @@ const UserProfileSetUp: React.FC<UserProfileSetUpProps> = ({ formData, setFormDa
     
     if (result?.info) {
       setUserImage(result.info.url)
-      setFieldValue('avatar', userImage);
     }
   };
+  useEffect(()=>{
+    setFieldValue('avatar', userImage);
+  },[userImage])
 
   return (
     <div className='w-full'>
@@ -37,14 +40,17 @@ const UserProfileSetUp: React.FC<UserProfileSetUpProps> = ({ formData, setFormDa
           uploadPreset="bagwise"
         >
           {({ open }) => (
-            <div className=' cursor-pointer hover:backdrop-blur-2xl' onClick={() => open()} >
+            <div className='group cursor-pointer rounded-full overflow-hidden h-20 w-20  relative  hover:backdrop-blur-2xl' onClick={() => open()} >
               <Image
                 src={formData.avatar ? formData.avatar : userImage}
                 height={200}
                 alt='Avatar'
                 width={100}
-                className='rounded-full h-20 w-20 object-cover'
+                className=' object-cover'
               />
+              <div className="bg-[#00000064] h-full scale-0 group-hover:scale-100 transition ease-in-out w-full absolute top-0 left-0 flex items-center justify-center">
+              <BsPencil  size={25} className="text-slate-200"/>
+              </div>
            
             </div>
           )}
@@ -53,7 +59,7 @@ const UserProfileSetUp: React.FC<UserProfileSetUpProps> = ({ formData, setFormDa
       </div>
       <div className='flex flex-col my-4'>
         <label htmlFor='address' className='text-lg md:text-xl font-semibold'>
-          Enter Your Address <span className='text-sm'>(Optional) </span>
+          Your Address <span className='text-sm'>(Optional) </span>
         </label>
         <Field
           type='text'
