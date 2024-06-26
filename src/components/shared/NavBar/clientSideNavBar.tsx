@@ -1,6 +1,6 @@
 "use client"
 
-import React,{useState} from "react";
+import React from "react";
 import Image from "next/image";
 import { ASSETS } from "../../../../public/IMAGES";
 import SearchInput from "./SearchInput";
@@ -8,29 +8,28 @@ import Badge from "@mui/material/Badge";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
-import ToggleTheme from "./ToggleTheme";
-import { IoSearch } from "react-icons/io5";
+import Link from "next/link";
 import SideBar from "./SideBar";
 function ClientSideNavBar() {
   return (
     <nav className="w-full fixed backdrop-blur-lg shadow-sm  dark:bg-black bg-white z-50   ">
       <div className="flex gap-y-2 sm:gap-y-0 flex-col sm:flex-row items-center justify-center sm:justify-between  w-full px-4 md:px-8 py-2">
-        <div className="">
+          <Link href={"/"}>
           <Image
             src={ASSETS.lightLogo}
-            width={150}
-            height={150}
+            width={110}
+            height={100}
+            className="w-auto h-auto object-cover dark:hidden"
             alt="Bagwise Logo"
-            className="object-cover dark:hidden"
           />
           <Image
             src={ASSETS.darkLogo}
-            width={120}
-            height={150}
+            width={110}
+            height={100}
             alt="Bagwise Logo"
-            className="object-cover dark:block hidden"
-          />
-        </div>
+            className="w-auto h-auto object-cover dark:block hidden"
+            />
+            </Link>
         <div className="min-w-[30vw] hidden sm:flex">
 
         <SearchInput />

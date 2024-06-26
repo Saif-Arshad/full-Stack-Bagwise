@@ -1,9 +1,10 @@
 import React from 'react'
-
+import { IoIosArrowForward } from "react-icons/io";
+import Link from 'next/link';
 function JoinRegisteration() {
   return (
-    <div className='w-full lg:w-6/12 z-0 '>
-        <div className='w-full flex lg:sticky lg:top-32 flex-col '>
+    <div className='w-full lg:w-6/12 z-0 my-7 lg:my-0'>
+        <div className='w-full flex lg:sticky lg:top-28 flex-col '>
         <h1 className='text-xl md:text-3xl font-bold'>
         Join the Bagwise & Unlock
         <br/>
@@ -24,7 +25,18 @@ function JoinRegisteration() {
     </ul>
     <p>
         Create your account and unlock all these offers and get exclusive discounts
+        <br />
+        Already have a account ? Then login now
+
     </p>
+    <Link href={"/login-account"} className='w-5/6'>
+    <button 
+    className=' bg-black mr-4 dark:bg-[#424245] text-white font-semibold flex gap-x-1 items-center p-2 text-lg rounded-md mt-5'
+    >
+                  Login
+                  <IoIosArrowForward size={22} />
+    </button>
+      </Link>
         </div>  
     </div>
   )

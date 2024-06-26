@@ -19,22 +19,20 @@ function Footer() {
         <div className="space-y-4">
           <div>
             <Link href="/"> 
-             <div className="">
-          <Image
+            <Image
             src={ASSETS.lightLogo}
-            width={150}
-            height={150}
+            width={110}
+            height={100}
+            className="w-auto h-auto object-cover dark:hidden"
             alt="Bagwise Logo"
-            className="object-cover dark:hidden"
           />
           <Image
             src={ASSETS.darkLogo}
-            width={120}
-            height={150}
+            width={110}
+            height={100}
             alt="Bagwise Logo"
-            className="object-cover dark:block hidden"
-          />
-        </div>
+            className="w-auto h-auto object-cover dark:block hidden"
+            />
             </Link>
           </div>
           <div className="max-w-md pr-16 text-md text-black dark:text-white ">Discover the perfect bag for every occasion at BagWise. From chic handbags to versatile shoulder bags, we have it all.

@@ -48,15 +48,8 @@ const MultiStepSignUpForm: React.FC = () => {
     if (activeStep === 1) {
       setIsProfileSubmitted(true);
       setActiveStep(activeStep + 1);
-      const userValues = {
-        name : values.firstName + " " + values.lastName,
-        email: values.email,
-        password: values.password,
-        gender: values.gender,
-        avatar : values.avatar ,
-        address : values.address ,
-      }
-      signUp(userValues);
+     
+      signUp(values);
       console.log(response)
       console.log('Form Data:', values);
     } else {
@@ -84,7 +77,7 @@ const MultiStepSignUpForm: React.FC = () => {
               {activeStep > 0 && !isProfileSubmitted && (
                 <button
                   type='button'
-                  className=' bg-black mr-4 dark:bg-[#959598] text-white font-semibold flex gap-x-1 items-center p-2 rounded-md mt-5'
+                  className=' bg-black mr-4 dark:bg-[#424245] text-white font-semibold flex gap-x-1 items-center p-2 rounded-md mt-5'
                   onClick={() => setActiveStep(activeStep - 1)}
                 >
                   <IoIosArrowBack size={20} />
@@ -92,7 +85,7 @@ const MultiStepSignUpForm: React.FC = () => {
                 </button>
               )}
               {!isProfileSubmitted && (
-                <button type='submit' disabled={isSubmitting} className=' bg-black dark:bg-[#959598] text-white font-semibold flex gap-x-1 items-center p-2 rounded-md mt-5'>
+                <button type='submit' disabled={isSubmitting} className=' bg-black dark:bg-[#424245] text-white font-semibold flex gap-x-1 items-center p-2 rounded-md mt-5'>
                   {isLastStep ? 'Submit' : 'Next'}
                   <IoIosArrowForward size={20} />
                 </button>
