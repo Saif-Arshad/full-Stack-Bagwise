@@ -28,7 +28,7 @@ const UserProfileSetUp: React.FC<UserProfileSetUpProps> = ({ formData, setFormDa
 
   return (
     <div className='w-full'>
-      <h1 className='text-xl md:text-3xl font-bold my-5'>Set Up Your Profile</h1>
+      <h1 className='text-xl md:text-3xl font-bold my-5' id="setUpProfile">Set Up Your Profile</h1>
       <div className='flex flex-col'>
         <label htmlFor='avatar' className='text-lg md:text-xl my-4 font-semibold'>
           Upload Avatar <span className='text-sm'>(Optional) </span>

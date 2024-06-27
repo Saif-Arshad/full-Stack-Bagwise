@@ -5,14 +5,17 @@ import { Formik, Form, FormikHelpers } from 'formik';
 import { FormData } from '@/validations/YUP';
 import { signUpSchema, profileSchema } from '@/validations/YUP';
 import RegisterForm from './RegisterForm';
+import { useSelector,useDispatch } from 'react-redux';
 import { IoIosArrowBack } from "react-icons/io";
 import UserProfileSetUp from './UserProfileSetUp';
+import { ThunkDispatch } from "@reduxjs/toolkit";
 import VarifyUserOTP from './VarifyUserOTP';
 import { IoIosArrowForward } from "react-icons/io";
-import useSignUp from '@/customHooks/useSignUp';
+import Link from 'next/link';
+import { createUser } from '@/store/feature/SignUpSlice';
 
 const MultiStepSignUpForm: React.FC = () => {
-  const {loading,error,response,signUp} = useSignUp()
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
     lastName: '',
@@ -24,7 +27,8 @@ const MultiStepSignUpForm: React.FC = () => {
   });
   const [activeStep, setActiveStep] = useState(0);
   const [isProfileSubmitted, setIsProfileSubmitted] = useState(false);
-
+  const user = useSelector((state: any) => state.createUser);
+  console.log("🚀 ~ user:", user)
   const steps = [
     {
       label: 'Sign Up',
@@ -48,9 +52,7 @@ const MultiStepSignUpForm: React.FC = () => {
     if (activeStep === 1) {
       setIsProfileSubmitted(true);
       setActiveStep(activeStep + 1);
-     
-      signUp(values);
-      console.log(response)
+      dispatch(createUser(values));
       console.log('Form Data:', values);
     } else {
       setFormData(values);

@@ -42,7 +42,6 @@ export async function POST(req: NextRequest) {
         const newUser = new User(user);
         
         const otp = Math.floor(100000 + Math.random() * 900000).toString();
-        console.log("🚀 ~ POST ~ otp:", otp)
         
         const otpData = new OTP({
             user_id: newUser._id,
@@ -230,7 +229,7 @@ export async function POST(req: NextRequest) {
                             <td style="overflow-wrap:break-word;word-break:break-word;padding:33px 55px;font-family:'Cabin',sans-serif;" align="left">
 
                               <div style="font-size: 14px; line-height: 160%; text-align: center; word-wrap: break-word;">
-                                <p style="font-size: 14px; line-height: 160%;"><span style="font-size: 27px;font-weight:500; line-height: 35.2px;">Hi,</span></p>
+                                <p style="font-size: 14px; line-height: 160%;"><span style="font-size: 27px;font-weight:500; line-height: 35.2px;">Thanks for joining Bagwise,</span></p>
                                 <p style="font-size: 14px; margin:5px 0px; line-height: 160%;"><span style="font-size: 22px; line-height: 35.2px;">You're almost ready to get started </span></p>
                                 <p style="font-size: 14px; line-height: 160%;"><span style="font-size: 18px; line-height: 28.8px;">Please use the OTP code below to verify your email address and unlock exclusive offers and services with Bagwise. </span></p>
                               </div>
@@ -325,6 +324,6 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({
             success: false,
             message: `There was an error creating the user: ${error.message}`
-        });
+        },{status: 500});
     }
 }
