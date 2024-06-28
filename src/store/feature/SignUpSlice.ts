@@ -31,7 +31,6 @@ export const createUser = createAsyncThunk("user", async (formData:any, { reject
         return rejectWithValue(error.message);
     }
 });
-
 const expenseSlice = createSlice({
     name: 'userSlice',
     initialState,
@@ -46,6 +45,10 @@ const expenseSlice = createSlice({
             state.isLoading = false;
             state.isError = false;
             state.res = action.payload;
+            console.log(action.payload)
+            if(action.payload.token){
+                localStorage.setItem('bagwise_token',action.payload.token)
+               }
         });
 
         builder.addCase(createUser.rejected, (state, action:any) => {

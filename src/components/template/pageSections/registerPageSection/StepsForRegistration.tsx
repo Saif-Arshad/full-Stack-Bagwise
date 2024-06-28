@@ -9,7 +9,7 @@ import { useSelector,useDispatch } from 'react-redux';
 import { IoIosArrowBack } from "react-icons/io";
 import UserProfileSetUp from './UserProfileSetUp';
 import { ThunkDispatch } from "@reduxjs/toolkit";
-import VarifyUserOTP from './VarifyUserOTP';
+import RequestChecking from './RequestChecking';
 import { IoIosArrowForward } from "react-icons/io";
 import Link from 'next/link';
 import { createUser } from '@/store/feature/SignUpSlice';
@@ -42,7 +42,7 @@ const MultiStepSignUpForm: React.FC = () => {
     },
     {
       label: 'Verify OTP',
-      component: VarifyUserOTP,
+      component: RequestChecking,
     },
   ];
 
@@ -53,6 +53,7 @@ const MultiStepSignUpForm: React.FC = () => {
       setIsProfileSubmitted(true);
       setActiveStep(activeStep + 1);
       dispatch(createUser(values));
+   
       console.log('Form Data:', values);
     } else {
       setFormData(values);

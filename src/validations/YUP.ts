@@ -23,4 +23,8 @@ export interface FormData {
     avatar: Yup.string(),
     address: Yup.string(),
   });
+
+  export const otpSchema = Yup.object().shape({
+    otp: Yup.string().required('OTP is required'),
+  })
   

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { ConnectDB } from "@/database/ConnectDB";
 import { User } from "@/models/userModel";
 import { OTP } from "@/models/OTPModel";
+import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import nodemailer from 'nodemailer';
 
@@ -313,11 +314,24 @@ export async function POST(req: NextRequest) {
 
         const info = await transporter.sendMail(mailOptions);
         console.log('Email sent: ' + info.response);
-
+        const token = jwt.sign(
+          {
+              id: newUser._id,
+              name: newUser.name,
+              email: newUser.email,
+          },
+          process.env.JWT_SECRET!,
+          { expiresIn: '1h' }
+      );
         await newUser.save();
 
+
+
+
         return NextResponse.json({
-            success: true,
+          token:token,
+          otp:true,
+          success: true,
             message: "User created successfully"
         });
     } catch (error: any) {
