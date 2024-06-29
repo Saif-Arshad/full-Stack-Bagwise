@@ -44,6 +44,11 @@ const expenseSlice = createSlice({
         builder.addCase(createUser.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isError = false;
+            if(action.payload.error){
+                state.isError=true
+                state.error=action.payload
+                return
+            }
             state.res = action.payload;
             console.log(action.payload)
             if(action.payload.token){

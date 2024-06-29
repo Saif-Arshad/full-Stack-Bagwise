@@ -10,6 +10,8 @@ export async function POST(req: NextRequest) {
     let decoded;
     try {
         decoded = jwt.decode(token);
+        console.log("🚀 ~ POST ~ decoded:", decoded)
+        
         if (!decoded) {
             return NextResponse.json({
                 success: false,
@@ -25,21 +27,22 @@ export async function POST(req: NextRequest) {
     }
 
     const email = (decoded as any).email;
-    console.log("🚀 ~ POST ~ email:", email);
+    const userId = (decoded as any).id;
+    console.log("🚀 ~ POST ~ email:", email,userId);
 
     try {
-        const user = await User.findOne({ email });
-        console.log("🚀 ~ POST ~ user:", user);
+        // const user = await User.findOne({ email });
+        // console.log("🚀 ~ POST ~ user:", user);
 
-        if (!user) {
-            return NextResponse.json({
-                success: false,
-                message: 'User not found'
-            }, { status: 404 });
-        }
+        // if (!user) {
+        //     return NextResponse.json({
+        //         success: false,
+        //         message: 'User not found'
+        //     }, { status: 404 });
+        // }
 
         const otpData = await OTP.findOne({
-            user_id: user._id,
+            user_id: userId,
             otp: otp,
             expire_at: { $gt: new Date() }
         });
@@ -52,21 +55,23 @@ export async function POST(req: NextRequest) {
             }, { status: 400 });
         }
 
-        const userVerified = await User.findOneAndUpdate(
+        const user = await User.findOneAndUpdate(
             { email },
             { isVerified: true },
             { new: true }
         );
 
-        const deleteOtp = await OTP.findOneAndDelete({
-            user_id: user._id,
-            otp: otp
-        });
+        if(!user){
+            return NextResponse.json({
+                success: false,
+                message: 'User not found',
+            },{status:500});
+        }
 
         return NextResponse.json({
             success: true,
             message: 'OTP verified successfully',
-            user: userVerified
+            user: user
         });
     } catch (error) {
         console.error(error);
