@@ -1,18 +1,18 @@
 import React from 'react'
+import './Loading.css'
 function Loading() {
   return (
-    <div className="w-full gap-x-2 flex justify-center items-center">
-    <div
-      className="w-5 bg-[#d991c2] animate-pulse h-5 rounded-full animate-bounce"
-    ></div>
-    <div
-      className="w-5 animate-pulse h-5 bg-[#9869b8] rounded-full animate-bounce"
-    ></div>
-    <div
-      className="w-5 h-5 animate-pulse bg-[#6756cc] rounded-full animate-bounce"
-    ></div>
+    <div className="hourglassBackground">
+    <div className="hourglassContainer">
+      <div className="hourglassCurves"></div>
+      <div className="hourglassCapTop"></div>
+      <div className="hourglassGlassTop"></div>
+      <div className="hourglassSand"></div>
+      <div className="hourglassSandStream"></div>
+      <div className="hourglassCapBottom"></div>
+      <div className="hourglassGlass"></div>
+    </div>
   </div>
-  
   )
 }
 

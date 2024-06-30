@@ -5,13 +5,11 @@ import { Formik, Form, FormikHelpers } from 'formik';
 import { FormData } from '@/validations/YUP';
 import { signUpSchema, profileSchema } from '@/validations/YUP';
 import RegisterForm from './RegisterForm';
-import { useSelector,useDispatch } from 'react-redux';
-import { IoIosArrowBack } from "react-icons/io";
+import { useSelector, useDispatch } from 'react-redux';
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import UserProfileSetUp from './UserProfileSetUp';
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import RequestChecking from './RequestChecking';
-import { IoIosArrowForward } from "react-icons/io";
-import Link from 'next/link';
 import { createUser } from '@/store/feature/SignUpSlice';
 
 const MultiStepSignUpForm: React.FC = () => {
@@ -28,7 +26,8 @@ const MultiStepSignUpForm: React.FC = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [isProfileSubmitted, setIsProfileSubmitted] = useState(false);
   const user = useSelector((state: any) => state.createUser);
-  console.log("🚀 ~ user:", user)
+  console.log("🚀 ~ user:", user);
+  
   const steps = [
     {
       label: 'Sign Up',
@@ -62,6 +61,10 @@ const MultiStepSignUpForm: React.FC = () => {
     actions.setSubmitting(false);
   };
 
+  const resetProfileSubmission = () => {
+    setIsProfileSubmitted(false);
+  };
+
   const currentValidationSchema = steps[activeStep]?.validationSchema;
 
   const CurrentStepComponent = steps[activeStep]?.component;
@@ -75,7 +78,14 @@ const MultiStepSignUpForm: React.FC = () => {
       >
         {({ isSubmitting }) => (
           <Form>
-            <CurrentStepComponent formData={formData} setFormData={setFormData} />
+            {CurrentStepComponent && 
+              <CurrentStepComponent 
+                formData={formData} 
+                setFormData={setFormData} 
+                resetStep={() => setActiveStep(0)}
+                resetProfileSubmission={resetProfileSubmission}
+              />
+            }
             <div className='flex justify-between mt-4'>
               {activeStep > 0 && !isProfileSubmitted && (
                 <button

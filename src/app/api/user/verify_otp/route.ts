@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 
 export async function POST(req: NextRequest) {
     const { token, otp } = await req.json();
-    console.log("🚀 ~ POST ~ otp:", otp);
+    console.log("🚀 ~ POST ~ otp:", otp.otp);
 
     let decoded;
     try {
@@ -31,19 +31,9 @@ export async function POST(req: NextRequest) {
     console.log("🚀 ~ POST ~ email:", email,userId);
 
     try {
-        // const user = await User.findOne({ email });
-        // console.log("🚀 ~ POST ~ user:", user);
-
-        // if (!user) {
-        //     return NextResponse.json({
-        //         success: false,
-        //         message: 'User not found'
-        //     }, { status: 404 });
-        // }
-
         const otpData = await OTP.findOne({
             user_id: userId,
-            otp: otp,
+            otp: otp.otp,
             expire_at: { $gt: new Date() }
         });
         console.log(otpData);

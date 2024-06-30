@@ -41,8 +41,10 @@ export async function POST(req: NextRequest) {
         if (!existingUser) {
             return NextResponse.json({
                 success: false,
+                error:{
                 message: 'User not found'
-            }, { status: 404 });
+                }
+              }, { status: 404 });
         }
 
         const otp = Math.floor(100000 + Math.random() * 900000).toString();
@@ -317,7 +319,10 @@ export async function POST(req: NextRequest) {
         const info = await transporter.sendMail(mailOptions);
         console.log('Email sent: ' + info.response);
 
-        return NextResponse.json({ message: 'OTP resent successfully' });
+        return NextResponse.json({
+          success: true,
+          
+          message: 'OTP resent successfully' });
     } catch (error) {
         console.error(error);
         return NextResponse.json({ message: 'Failed to resend OTP', error }, { status: 500 });
