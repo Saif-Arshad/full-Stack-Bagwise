@@ -27,7 +27,7 @@ function WelcomeBack() {
     <br />
     Don&rsquo;t have an account please register first
     </p>
-    <Link href={"/login-account"} className='w-5/6'>
+    <Link href={"/register-account"} className='w-5/6'>
     <button 
     className=' bg-black mr-4 dark:bg-[#424245] text-white font-semibold flex gap-x-1 items-center p-2 text-lg rounded-md mt-5'
     >

@@ -18,6 +18,12 @@ export interface FormData {
       .min(8, 'Password must be at least 8 characters')
       .required('Password is required'),
   });
+  export const logInSchema = Yup.object().shape({
+    email: Yup.string().email('Invalid email').required('Email is required'),
+    password: Yup.string()
+      .min(8, 'Password must be at least 8 characters')
+      .required('Password is required'),
+  });
   
   export const profileSchema = Yup.object().shape({
     avatar: Yup.string(),
