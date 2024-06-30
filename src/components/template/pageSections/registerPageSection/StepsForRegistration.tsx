@@ -9,11 +9,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import UserProfileSetUp from './UserProfileSetUp';
 import { ThunkDispatch } from "@reduxjs/toolkit";
-import RequestChecking from './RequestChecking';
 import { createUser } from '@/store/feature/SignUpSlice';
+import ButtonLoading from '@/components/loader/ButtonLoading';
+import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 const MultiStepSignUpForm: React.FC = () => {
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
+  const router = useRouter();
+  const { isLoading, isError, error, res } = useSelector((state: any) => state.createUser); 
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
     lastName: '',
@@ -25,8 +29,6 @@ const MultiStepSignUpForm: React.FC = () => {
   });
   const [activeStep, setActiveStep] = useState(0);
   const [isProfileSubmitted, setIsProfileSubmitted] = useState(false);
-  const user = useSelector((state: any) => state.createUser);
-  console.log("🚀 ~ user:", user);
   
   const steps = [
     {
@@ -38,22 +40,26 @@ const MultiStepSignUpForm: React.FC = () => {
       label: 'User Profile',
       validationSchema: profileSchema,
       component: UserProfileSetUp,
-    },
-    {
-      label: 'Verify OTP',
-      component: RequestChecking,
-    },
+    }
   ];
 
-  const isLastStep = activeStep === steps.length - 2;
+  const isLastStep = activeStep === steps.length - 1;
 
-  const handleSubmit = (values: FormData, actions: FormikHelpers<FormData>) => {
-    if (activeStep === 1) {
+  const handleSubmit = async (values: FormData, actions: FormikHelpers<FormData>) => {
+    if (isLastStep) {
       setIsProfileSubmitted(true);
-      setActiveStep(activeStep + 1);
-      dispatch(createUser(values));
-   
-      console.log('Form Data:', values);
+      const createNewUser = await dispatch(createUser(values));
+      if(res?.success){
+        toast.success(res.message)
+        router.push('/verify-account');
+        return
+      }
+      if (isError) {
+        toast.error("Sign Up failed Please try again");
+        setIsProfileSubmitted(false);
+        setActiveStep(0);
+        return
+      }
     } else {
       setFormData(values);
       setActiveStep(activeStep + 1);
@@ -61,12 +67,7 @@ const MultiStepSignUpForm: React.FC = () => {
     actions.setSubmitting(false);
   };
 
-  const resetProfileSubmission = () => {
-    setIsProfileSubmitted(false);
-  };
-
   const currentValidationSchema = steps[activeStep]?.validationSchema;
-
   const CurrentStepComponent = steps[activeStep]?.component;
 
   return (
@@ -82,12 +83,10 @@ const MultiStepSignUpForm: React.FC = () => {
               <CurrentStepComponent 
                 formData={formData} 
                 setFormData={setFormData} 
-                resetStep={() => setActiveStep(0)}
-                resetProfileSubmission={resetProfileSubmission}
               />
             }
             <div className='flex justify-between mt-4'>
-              {activeStep > 0 && !isProfileSubmitted && (
+              {activeStep > 0 && (
                 <button
                   type='button'
                   className=' bg-black mr-4 dark:bg-[#424245] text-white font-semibold flex gap-x-1 items-center p-2 rounded-md mt-5'
@@ -97,12 +96,14 @@ const MultiStepSignUpForm: React.FC = () => {
                   Back
                 </button>
               )}
-              {!isProfileSubmitted && (
-                <button type='submit' disabled={isSubmitting} className=' bg-black dark:bg-[#424245] text-white font-semibold flex gap-x-1 items-center p-2 rounded-md mt-5'>
-                  {isLastStep ? 'Submit' : 'Next'}
-                  <IoIosArrowForward size={20} />
-                </button>
-              )}
+              <button 
+                type='submit' 
+                disabled={isSubmitting || isLoading} 
+                className=' bg-black dark:bg-[#424245] text-white font-semibold flex gap-x-1 items-center p-2 rounded-md mt-5'
+              >
+                {isLoading ? <ButtonLoading /> : (isLastStep ? 'Submit' : 'Next')}
+                <IoIosArrowForward size={20} />
+              </button>
             </div>
           </Form>
         )}

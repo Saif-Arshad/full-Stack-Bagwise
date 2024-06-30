@@ -1,6 +1,7 @@
 "use client"
 
-import React,{useState} from 'react';
+
+import React, { useState } from 'react';
 import { useFormikContext, Field } from 'formik';
 import { FormData } from '@/validations/YUP';
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
@@ -10,7 +11,7 @@ interface RegisterFormProps {
   setFormData: (data: FormData) => void;
 }
 
-const RegisterForm: React.FC<RegisterFormProps> = () => {
+const RegisterForm: React.FC<RegisterFormProps> = ({ formData, setFormData }) => {
   const { values, errors, touched, handleChange, handleBlur } = useFormikContext<FormData>();
   const [showPassword, setShowPassword] = useState(false);
 
