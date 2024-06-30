@@ -18,6 +18,8 @@ const MultiStepSignUpForm: React.FC = () => {
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const router = useRouter();
   const { isLoading, isError, error, res } = useSelector((state: any) => state.createUser); 
+  console.log("🚀 ~ isError:", isError)
+  console.log("🚀 ~ isError:", error)
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
     lastName: '',
@@ -54,6 +56,12 @@ const MultiStepSignUpForm: React.FC = () => {
         router.push('/verify-account');
         return
       }
+      if(error){
+        toast.error(error.message);
+        setIsProfileSubmitted(false);
+        setActiveStep(0);
+        return
+        }
       if (isError) {
         toast.error("Sign Up failed Please try again");
         setIsProfileSubmitted(false);

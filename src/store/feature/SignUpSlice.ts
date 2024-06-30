@@ -44,9 +44,10 @@ const expenseSlice = createSlice({
         builder.addCase(createUser.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isError = false;
+
             if(action.payload.error){
                 state.isError=true
-                state.error=action.payload
+                state.error=action.payload.error
                 return
             }
             state.res = action.payload;
@@ -59,6 +60,8 @@ const expenseSlice = createSlice({
         builder.addCase(createUser.rejected, (state, action:any) => {
             state.isLoading = false;
             state.isError = true;
+            console.log(action.payload)
+
             state.error= action.error
         });
 

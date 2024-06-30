@@ -3,7 +3,8 @@
 import React,{useState} from 'react';
 import { logInSchema} from '@/validations/YUP';
 import {  IoIosArrowForward } from "react-icons/io";
-
+import { signIn } from 'next-auth/react';
+import toast from 'react-hot-toast';
 import { useFormik } from "formik";
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import ButtonLoading from '@/components/loader/ButtonLoading';
@@ -15,7 +16,22 @@ function LoginForm() {
   };
   const LoginSubmitHandler = async(value:any)=>{
     console.log("🚀 ~ LoginSubmitHandler ~ value:", value)
+    setLoading(true)
+    const result = await signIn('credentials', {
+      redirect: false,
+      email: value.email,
+      password: value.password
+    });
     
+    if (result?.error) {
+      toast.error(result.error)
+      console.error(result.error);
+    } else {
+      toast.success("login Sucessfull")
+      console.log("Login successful!");
+    }
+    setLoading(false)
+
   }
   const Formik = useFormik({
     initialValues: {

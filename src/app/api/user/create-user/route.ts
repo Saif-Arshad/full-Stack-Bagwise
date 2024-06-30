@@ -320,7 +320,7 @@ export async function POST(req: NextRequest) {
               name: newUser.name,
               email: newUser.email,
           },
-          process.env.JWT_SECRET!,
+          process.env.NEXT_AUTH_SECRET!,
           { expiresIn: '1h' }
       );
         await newUser.save();
