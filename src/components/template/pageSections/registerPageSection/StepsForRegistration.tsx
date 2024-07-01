@@ -18,8 +18,6 @@ const MultiStepSignUpForm: React.FC = () => {
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const router = useRouter();
   const { isLoading, isError, error, res } = useSelector((state: any) => state.createUser); 
-  console.log("🚀 ~ isError:", isError)
-  console.log("🚀 ~ isError:", error)
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
     lastName: '',

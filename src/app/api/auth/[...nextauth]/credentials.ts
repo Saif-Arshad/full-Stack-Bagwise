@@ -1,15 +1,22 @@
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
+import GoogleProvider from "next-auth/providers/google";
 import { ConnectDB } from "@/database/ConnectDB";
 import { User } from "@/models/userModel";
 
 export const authOption: NextAuthOptions = {
   providers: [
+    GoogleProvider({
+      clientId: "921235408770-ad5jtrsbsidcarik2982rappe6gaja3d.apps.googleusercontent.com",
+      // clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: "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",
+      // clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    }),
 
-            // There will you write all the Provider
-            // For example Credentials(Email,password)  or Fb ,google
-        //  i use Email password as credentials
+    // There you will write all the Providers
+    // For example Credentials (Email, password) or Fb, Google
+    // I use Email and Password as credentials
 
     CredentialsProvider({
       id: "credentials",
@@ -20,8 +27,7 @@ export const authOption: NextAuthOptions = {
       },
       async authorize(credentials: any): Promise<any> {
 
-
-        // All Your value of field like email and password are in credential variable
+        // All Your value of fields like email and password are in the credentials variable
 
         // This is a demo code to use that in login for future 
 
@@ -43,16 +49,12 @@ export const authOption: NextAuthOptions = {
         // }
 
         // console.log("🚀 ~ authorize ~ credentials:", credentials)
-        
+
         await ConnectDB();
 
         try {
           const user = await User.findOne({
-            $or: [
-              {
-                email: credentials.email,
-              },
-            ],
+            email: credentials.email,
           });
 
           if (!user) {
@@ -75,7 +77,7 @@ export const authOption: NextAuthOptions = {
           }
         } catch (error: any) {
           console.error(error);
-          throw error; 
+          throw error;
         }
       },
     }),
@@ -89,8 +91,38 @@ export const authOption: NextAuthOptions = {
   secret: process.env.NEXT_AUTH_SECRET,
   callbacks: {
 
-        // Sessssion will run on every reload and have the values you set in layout or context folder
+    // signIn callback is used to handle user login with different providers
+    async signIn({ user, account }) {
+      console.log("🚀 ~ signIn ~ account:", account)
+      console.log("🚀 ~ signIn ~ user:", user)
+      
+      await ConnectDB();
 
+      if (account && account.provider === "google") {
+        const existingUser = await User.findOne({ email: user.email });
+        if (existingUser) {
+          return true; 
+        }
+        if (!existingUser) {
+          const newUser = new User({
+            email: user.email,
+            name: user.name,
+            avatar: user.image,
+            isVerified: true, 
+            userType: "USER", 
+            password: "10472017012", 
+            gender: "", 
+            address: "", 
+          });
+
+          await newUser.save();
+        }
+      }
+
+      return true;
+    },
+
+    // Session will run on every reload and have the values you set in layout or context folder
     async session({ session, token }) {
       if (token) {
         session._id = token._id?.toString();
@@ -99,6 +131,7 @@ export const authOption: NextAuthOptions = {
       }
       return session;
     },
+
     async jwt({ user, token }) {
       if (user) {
         token._id = user._id?.toString();

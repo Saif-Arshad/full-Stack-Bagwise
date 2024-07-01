@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import ClientSideNavBar from "@/components/shared/navBar/clientSideNavBar";
+import {Toaster} from 'react-hot-toast'
 import "@/app/globals.css";
 import Footer from "@/components/shared/footer/Footer";
 import {ThemeProviders} from '@/providers/ThemeProvider'
 import {ReduxProviders} from '@/providers/ReduxProvider'
+import Auth from "@/context/Auth";
 
 export const metadata: Metadata = {
   title: "Bagwise",
@@ -18,12 +19,17 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
+      <Auth>
+
       <ThemeProviders>
   <ReduxProviders>
+  <Toaster
+  position="top-right"/>
         {children}
-        {/* <Footer/> */}
   </ReduxProviders>
 </ThemeProviders>
+</Auth>
+
         </body>
     </html>
   );

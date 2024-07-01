@@ -4,7 +4,7 @@ import { IoIosArrowForward } from "react-icons/io";
 
 function WelcomeBack() {
   return (
-    <div className='w-full lg:w-6/12 z-0 '>
+    <div className='hidden lg:flex w-full lg:w-6/12 z-0 '>
         <div className='w-full flex lg:sticky lg:top-32 flex-col '>
         <h1 className='text-xl md:text-3xl font-bold'>
         Welcome Back to Bagwise!
@@ -13,7 +13,7 @@ function WelcomeBack() {
     Access Your Account and Enjoy Exclusive Benefits
     </h3>
 
-    <ul className='list-disc text-lg my-5'>
+    <ul className='list-disc text-lg my-5 '>
     <li>Manage your orders and track your shipments</li>
   <li>Save your favorite items to your wishlist</li>
   <li>View and update your profile and preferences</li>

@@ -4,7 +4,7 @@ import Link from 'next/link';
 function JoinRegisteration() {
   return (
     <div className='w-full lg:w-6/12 z-0 my-7 lg:my-0'>
-        <div className='w-full flex lg:sticky lg:top-28 flex-col '>
+        <div className='w-full hidden lg:flex lg:sticky lg:top-28 flex-col '>
         <h1 className='text-xl md:text-3xl font-bold'>
         Join the Bagwise & Unlock
         <br/>
