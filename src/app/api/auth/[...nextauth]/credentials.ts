@@ -8,8 +8,8 @@ import { User } from "@/models/userModel";
 export const authOption: NextAuthOptions = {
   providers: [
     GoogleProvider({
-      clientId: NEXT_PUBLIC_process.en_SECRETv.GOOGLE_CLIENT,
-      clientSecret: NEXT_PUBLIC_process.env.GOOGLE_CLIENT_ID,
+      clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.NEXT_PUBLIC_SECRET_GOOGLE_CLIENT!,
     }),
 
     // There you will write all the Providers
