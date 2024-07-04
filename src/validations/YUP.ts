@@ -33,4 +33,8 @@ export interface FormData {
   export const otpSchema = Yup.object().shape({
     otp: Yup.string().required('OTP is required'),
   })
+  export const resetPasswordSchema = Yup.object().shape({
+    email: Yup.string().email('Invalid email').required('Email is required'),
+
+  })
   

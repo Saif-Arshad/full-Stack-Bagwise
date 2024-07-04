@@ -2,10 +2,12 @@ import { NextRequest, NextResponse } from 'next/server';
 import { OTP } from '../../../../models/OTPModel';
 import { User } from '../../../../models/userModel';
 import jwt from 'jsonwebtoken';
+import { ConnectDB } from '@/database/ConnectDB';
 
 export async function POST(req: NextRequest) {
     const { token, otp } = await req.json();
     console.log("🚀 ~ POST ~ otp:", otp.otp);
+    await ConnectDB()
 
     let decoded;
     try {

@@ -3,18 +3,20 @@ import { User } from '@/models/userModel';
 import { OTP } from '@/models/OTPModel'; // Assuming you have an otpModel defined
 import nodemailer from 'nodemailer';
 import jwt from 'jsonwebtoken';
+import { ConnectDB } from '@/database/ConnectDB';
 
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: process.env.MAIL_USER,
-        pass: process.env.MAIL_PASSWORD,
+      user: process.env.MAIL_USER,
+      pass: process.env.MAIL_PASSWORD,
     },
 });
 
 export async function POST(req: NextRequest) {
-    const { token } = await req.json();
+  const { token } = await req.json();
+  await ConnectDB()
 
     let decoded;
     try {

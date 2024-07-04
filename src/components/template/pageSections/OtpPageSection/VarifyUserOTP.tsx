@@ -62,6 +62,9 @@ function VerifyUserOTP() {
 
       <div className="px-8 py-10 bg-white  rounded-lg dark:bg-[#101011] dark:text-gray-200 w-full sm:w-96">
         <h1 className="text-2xl md:text-4xl font-semibold md:font-bold text-center mb-6">Verify OTP</h1>
+       <p className='text-sm text-center'>
+       To ensure the security of your account, please enter the OTP sent to your email.
+       </p>
         <form onSubmit={formik.handleSubmit}>
           <input 
             type="text" 

@@ -8,8 +8,7 @@ import toast from 'react-hot-toast';
 import { useFormik } from "formik";
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import ButtonLoading from '@/components/loader/ButtonLoading';
-import Google from '../../buttons/Google';
-
+import Link from 'next/link';
 function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -150,6 +149,13 @@ function LoginForm() {
               {formik.errors.password}
             </div>
           ) : null}
+        </div>
+        <div className="flex items-center justify-end">
+          <Link href="/forget-password">
+          <button type='button' className='text-black dark:text-white font-bold '>
+            Forget Password ?
+          </button>
+          </Link>
         </div>
         
         <button type='submit' className='bg-black dark:bg-[#424245] text-white font-semibold w-40 flex gap-x-1 items-center justify-center p-2 rounded-md mt-5'>

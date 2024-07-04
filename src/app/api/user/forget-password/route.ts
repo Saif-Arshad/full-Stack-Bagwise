@@ -2,6 +2,7 @@ import {NextResponse,NextRequest} from 'next/server'
 import { User } from '@/models/userModel'
 import nodemailer from 'nodemailer';
 import jwt from 'jsonwebtoken';
+import { ConnectDB } from '@/database/ConnectDB';
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -13,7 +14,8 @@ const transporter = nodemailer.createTransport({
 export async function POST(request: NextRequest) {
 
     const {email} = await request.json()
-
+    console.log("🚀 ~ POST ~ email:", email)
+ await ConnectDB()
 try {
   
 
@@ -25,13 +27,18 @@ try {
         )
         if(!userModel){
             return  NextResponse.json({
+              error:{
                 message:"no user found with this email"
+              }
             },{status:404})
         }
         if(!userModel.isVerified){
             return  NextResponse.json({
-                message:"no user found with this email"
-            },{status:400})
+              error:{
+
+                message:"User is not varified"
+              }
+              },{status:400})
         }
 
 
