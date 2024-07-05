@@ -90,35 +90,35 @@ export const authOption: NextAuthOptions = {
   callbacks: {
 
     // signIn callback is used to handle user login with different providers
-    async signIn({ user, account }) {
-      console.log("🚀 ~ signIn ~ account:", account)
-      console.log("🚀 ~ signIn ~ user:", user)
+    // async signIn({ user, account }) {
+    //   console.log("🚀 ~ signIn ~ account:", account)
+    //   console.log("🚀 ~ signIn ~ user:", user)
       
-      await ConnectDB();
+    //   await ConnectDB();
 
-      if (account && account.provider === "google") {
-        const existingUser = await User.findOne({ email: user.email });
-        if (existingUser) {
-          return true; 
-        }
-        if (!existingUser) {
-          const newUser = new User({
-            email: user.email,
-            name: user.name,
-            avatar: user.image,
-            isVerified: true, 
-            userType: "USER", 
-            password: "10472017012", 
-            gender: "", 
-            address: "", 
-          });
+    //   if (account && account.provider === "google") {
+    //     const existingUser = await User.findOne({ email: user.email });
+    //     if (existingUser) {
+    //       return true; 
+    //     }
+    //     if (!existingUser) {
+    //       const newUser = new User({
+    //         email: user.email,
+    //         name: user.name,
+    //         avatar: user.image,
+    //         isVerified: true, 
+    //         userType: "USER", 
+    //         password: "10472017012", 
+    //         gender: "", 
+    //         address: "", 
+    //       });
 
-          await newUser.save();
-        }
-      }
+    //       await newUser.save();
+    //     }
+    //   }
 
-      return true;
-    },
+    //   return true;
+    // },
 
     // Session will run on every reload and have the values you set in layout or context folder
     async session({ session, token }) {

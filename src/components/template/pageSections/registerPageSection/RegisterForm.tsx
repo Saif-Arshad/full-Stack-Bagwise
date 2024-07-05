@@ -20,20 +20,20 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ formData, setFormData }) =>
   const togglePasswordVisibility = () => {
     setShowPassword((prevState) => !prevState);
   };
-  const googleLogin =  async ()=>{
-    const googleAuth = await signIn('google', { prompt: 'select_account' });
-  if(googleAuth?.error){
-    toast.error("SomeThing wrong please try again later")
-    return
-  }
-    toast.success("Login successful");
-  }
+  // const googleLogin =  async ()=>{
+  //   const googleAuth = await signIn('google', { prompt: 'select_account' });
+  // if(googleAuth?.error){
+  //   toast.error("SomeThing wrong please try again later")
+  //   return
+  // }
+  //   toast.success("Login successful");
+  // }
 
   return (
     <div className='w-full'>
 <h1 className='text-xl md:text-3xl font-bold my-5'>Create Account</h1>
 
-      <div className="flex items-center mt-9 justify-start">
+      {/* <div className="flex items-center mt-9 justify-start">
 <button
 type="button"
       onClick={googleLogin}
@@ -82,7 +82,8 @@ type="button"
     </button>
 </div>
 
-<h1 className='text-xl md:text-3xl font-bold my-5'>OR</h1>
+<h1 className='text-xl md:text-3xl font-bold my-5'>OR</h1> */}
+
 
       <div className='flex flex-col'>
         <label htmlFor='firstName' className='text-xl md:text-2xl font-semibold'>

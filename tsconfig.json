@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/api/upload.js", "src/context/Auth.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/api/upload.js", "src/context/Auth.js", "src/components/template/pageSections/googleOneTab/GoogleSignUp.jsx", "src/components/template/pageSections/googleOneTab/GoogleLogIn.jsx"],
   "exclude": ["node_modules"]
 }

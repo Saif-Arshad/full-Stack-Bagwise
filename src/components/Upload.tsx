@@ -1,5 +1,6 @@
 "use client"
 import React, { useState } from 'react';
+import GoogleSignUp from './template/pageSections/googleOneTab/GoogleSignUp';
 
 
 const ImageUpload= () => {
@@ -11,6 +12,7 @@ const ImageUpload= () => {
       
             Upload an Image
          
+            {/* <GoogleSignUp/> */}
     </>
   );
 };

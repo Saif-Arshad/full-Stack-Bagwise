@@ -12,16 +12,16 @@ import Link from 'next/link';
 function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const googleLogin =  async ()=>{
-    const googleAuth = await signIn('google', { prompt: 'select_account' });
-  if(googleAuth?.error){
-    toast.error("SomeThing wrong please try again later")
-    return
-  }
-  else{
-    toast.success("Login successful");
-  }
-  }
+  // const googleLogin =  async ()=>{
+  //   const googleAuth = await signIn('google', { prompt: 'select_account' });
+  // if(googleAuth?.error){
+  //   toast.error("SomeThing wrong please try again later")
+  //   return
+  // }
+  // else{
+  //   toast.success("Login successful");
+  // }
+  // }
   const togglePasswordVisibility = () => {
     setShowPassword((prevState) => !prevState);
   };
@@ -58,7 +58,7 @@ function LoginForm() {
   return (
     <div className="w-full lg:w-10/12 flex flex-col">
 
-<div className="flex items-center mt-9 justify-start">
+{/* <div className="flex items-center mt-9 justify-start">
 <button
       onClick={googleLogin}
       className="flex items-center bg-white dark:bg-gray-900 border border-gray-300 rounded-lg  px-6 py-2 text-sm font-medium text-gray-800 dark:text-white hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
@@ -104,7 +104,7 @@ function LoginForm() {
       </svg>
       <span>Continue with Google</span>
     </button>
-</div>
+</div> */}
       {/* <button >
         Google
       </button> */}
