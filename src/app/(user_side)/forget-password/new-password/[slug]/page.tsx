@@ -2,10 +2,13 @@ import NewPassword from '@/components/template/pageSections/forgetPasswordPageSe
 import React from 'react'
 
 function page({params}:any) {
-  console.log("🚀 ~ page ~ params:", params)
+  const {slug} = params
   
+
+  
+
   return (
-  <NewPassword/>
+  <NewPassword slug={slug}/>
   )
 }
 

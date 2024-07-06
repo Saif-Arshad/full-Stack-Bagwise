@@ -21,14 +21,18 @@ export async function POST(request:NextRequest){
         if (!decoded) {
             return NextResponse.json({
                 success: false,
-                message: 'Invalid token'
+                error:{
+                    message: 'Invalid token'
+                }
             }, { status: 400 });
         }
     } catch (error) {
         console.error('Error decoding JWT:', error);
         return NextResponse.json({
             success: false,
-            message: 'Failed to decode token'
+            error:{
+                message: 'Failed to decode token'
+            }
         }, { status: 400 });
     }
 
@@ -40,7 +44,9 @@ export async function POST(request:NextRequest){
      if(!user){
         return NextResponse.json({
          success: false,
-            message: `User not found`
+         error:{
+             message: `User not found`
+            }
         },{status:404})
      }
 

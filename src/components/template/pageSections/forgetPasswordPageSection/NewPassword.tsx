@@ -3,18 +3,18 @@
 import React from 'react'
 import ButtonLoading from '@/components/loader/ButtonLoading'
 import { useFormik } from "formik";
-import { resetPasswordSchema } from '@/validations/YUP';
+import { NewPasswordSchema } from '@/validations/YUP';
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import { useNewPassword } from '@/customHooks/useNewPassword';
-function NewPassword() {
+function NewPassword({slug}:any) {
 
-    const {loading,newPassword,togglePasswordVisibility,showPassword}:any = useNewPassword()
+    const {loading,newPassword,togglePasswordVisibility,showPassword}:any = useNewPassword(slug)
 
     const formik = useFormik({
         initialValues: {
           password: "",
         },
-        validationSchema: resetPasswordSchema,
+        validationSchema: NewPasswordSchema,
         onSubmit: newPassword,
       });
 

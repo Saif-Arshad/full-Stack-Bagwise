@@ -2,16 +2,19 @@
  import { useState } from "react"
  import toast from "react-hot-toast";
 
-export const useNewPassword = ()=>{
+export const useNewPassword = (slug:any)=>{
     const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = () => {
     setShowPassword((prevState) => !prevState);
   };
-  
-    const newPassword = async(value:any , { resetForm }: any) => {
+    const newPassword = async(value:any ,{ resetForm }: any) => {
         console.log("🚀 ~ forgetPassword ~ value:", value)
-        
+
+        const backendData = {
+            new_password:value.password,
+            token:slug
+        }
         try {
             setLoading(true)
         const resetPassword = await fetch("/api/user/new-password",{
@@ -19,18 +22,18 @@ export const useNewPassword = ()=>{
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(value),
+            body: JSON.stringify(backendData),
         })
         const res = await resetPassword.json()
         console.log(res)
-        // if(res.success){
-        //     toast.success("Email send sucessfully please check email")
-        //     return
-        // }
-        // if(res.error){
-        //     toast.error(res.error.message)
-        //     return
-        // }
+        if(res.success){
+            toast.success(res.message)
+            return
+        }
+        if(res.error){
+            toast.error(res.error.message)
+            return
+        }
    
     } catch (error) {
                 console.log(error)
