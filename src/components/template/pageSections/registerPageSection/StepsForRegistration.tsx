@@ -84,7 +84,7 @@ const MultiStepSignUpForm: React.FC = () => {
         onSubmit={handleSubmit}
       >
         {({ isSubmitting }) => (
-          <Form>
+          <Form className='w-full'>
             {CurrentStepComponent && 
               <CurrentStepComponent 
                 formData={formData} 

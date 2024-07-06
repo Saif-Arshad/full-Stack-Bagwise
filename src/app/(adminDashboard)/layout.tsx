@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import "@/app/globals.css";
-import {ThemeProviders} from '@/providers/ThemeProvider'
-import {ReduxProviders} from '@/providers/ReduxProvider'
 
 export const metadata: Metadata = {
   title: "Dahboard | Bagwise",
@@ -14,11 +12,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
+   
         {children}
 
-        </body>
-    </html>
   );
 }

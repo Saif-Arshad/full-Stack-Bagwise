@@ -72,7 +72,7 @@ function VerifyUserOTP() {
             value={formik.values.otp}
             onChange={formik.handleChange}
             placeholder='30381'
-            className='p-2 rounded-lg mb-2 mt-4 focus:ring-2 focus:ring-slate-200 outline-none w-full sm:w-80 border border-slate-200'
+            className='p-2 rounded-lg mb-2 mt-4 focus:ring-2 focus:ring-slate-200 outline-none w-full sm:w-80 border border-slate-200 dark:border-black'
             name="otp"
           />
           {formik.touched.otp && formik.errors.otp ? (

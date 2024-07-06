@@ -65,7 +65,7 @@ const UserProfileSetUp: React.FC<UserProfileSetUpProps> = ({ formData, setFormDa
           id='address'
           name='address'
           placeholder='Address'
-          className='w-full p-2 rounded-lg mb-2 mt-4 focus:ring-2 focus:ring-slate-200 outline-none border border-slate-200'
+          className='w-full p-2 rounded-lg mb-2 mt-4 focus:ring-2 focus:ring-slate-200 outline-none border border-slate-200 dark:border-black'
         />
       </div>
     </div>

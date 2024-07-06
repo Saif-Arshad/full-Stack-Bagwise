@@ -97,7 +97,7 @@ type="button"
           onChange={handleChange}
           onBlur={handleBlur}
           placeholder='First Name'
-          className='w-full p-2 rounded-lg mb-2 mt-4 focus:ring-2 focus:ring-slate-200 outline-none border border-slate-200'
+          className='w-full p-2 rounded-lg mb-2 mt-4 focus:ring-2 focus:ring-slate-200 outline-none border border-slate-200 dark:border-black '
         />
         {touched.firstName && errors.firstName ? (
           <div className='text-red-600 dark:text-red-500'>{errors.firstName}</div>
@@ -112,7 +112,7 @@ type="button"
           onChange={handleChange}
           onBlur={handleBlur}
           placeholder='Last Name'
-          className='w-full p-2 rounded-lg mb-2 mt-1 focus:ring-2 focus:ring-slate-200 outline-none border border-slate-200'
+          className='w-full p-2 rounded-lg mb-2 mt-1 focus:ring-2 focus:ring-slate-200 outline-none border border-slate-200 dark:border-black'
         />
         {touched.lastName && errors.lastName ? (
           <div className='text-red-600 dark:text-red-500'>{errors.lastName}</div>
@@ -143,7 +143,7 @@ type="button"
             onChange={handleChange}
             onBlur={handleBlur}
             placeholder='Email'
-            className='w-full p-2 rounded-lg mb-2 mt-1 focus:ring-2 focus:ring-slate-200 outline-none border border-slate-200'
+            className='w-full p-2 rounded-lg mb-2 mt-1 focus:ring-2 focus:ring-slate-200 outline-none border border-slate-200 dark:border-black'
           />
           {touched.email && errors.email ? (
             <div className='text-red-600 dark:text-red-500'>{errors.email}</div>
@@ -158,7 +158,7 @@ type="button"
               onChange={handleChange}
               onBlur={handleBlur}
               placeholder='Password'
-              className='w-full p-2 rounded-lg mb-2 mt-1 focus:ring-2 focus:ring-slate-200 outline-none border border-slate-200'
+              className='w-full p-2 rounded-lg mb-2 mt-1 focus:ring-2 focus:ring-slate-200 outline-none border border-slate-200 dark:border-black'
             />
             <span className='absolute right-3 flex cursor-pointer top-3.5' onClick={togglePasswordVisibility}>
               {showPassword ? <FaRegEyeSlash size={23} /> : <FaRegEye size={23} />}

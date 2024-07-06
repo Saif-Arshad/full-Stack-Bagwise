@@ -120,7 +120,7 @@ function LoginForm() {
             value={formik.values.email}
             onChange={formik.handleChange}
             placeholder='Email'
-            className='w-full p-2 rounded-lg mb-2 mt-1 focus:ring-2 focus:ring-slate-200 outline-none border border-slate-200'
+            className='w-full p-2 rounded-lg mb-2 mt-1 focus:ring-2 focus:ring-slate-200 outline-none border border-slate-200 dark:border-black'
           />
           {formik.touched.email && formik.errors.email ? (
             <div className="text-red-600 text-sm">
@@ -138,7 +138,7 @@ function LoginForm() {
               value={formik.values.password}
               onChange={formik.handleChange}
               placeholder='Password'
-              className='w-full p-2 rounded-lg mb-2 mt-1 focus:ring-2 focus:ring-slate-200 outline-none border border-slate-200'
+              className='w-full p-2 rounded-lg mb-2 mt-1 focus:ring-2 focus:ring-slate-200 outline-none border border-slate-200 dark:border-black'
             />
             <span className='absolute right-3 flex cursor-pointer top-3.5' onClick={togglePasswordVisibility}>
               {showPassword ? <FaRegEyeSlash size={23} /> : <FaRegEye size={23} />}

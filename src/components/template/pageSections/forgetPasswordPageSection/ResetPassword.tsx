@@ -34,7 +34,7 @@ function ResetPassword() {
             value={formik.values.email}
             onChange={formik.handleChange}
             placeholder='example@gmail.com'
-            className='p-2 rounded-lg mb-2 mt-4 focus:ring-2 focus:ring-slate-200 outline-none w-full sm:w-80 border border-slate-200'
+            className='p-2 rounded-lg mb-2 mt-4 focus:ring-2 focus:ring-slate-200 outline-none w-full sm:w-80 border border-slate-200 dark:border-black'
             name="email"
           />
           {formik.touched.email && formik.errors.email ? (
