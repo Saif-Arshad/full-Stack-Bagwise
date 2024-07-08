@@ -88,7 +88,7 @@ export const authOption: NextAuthOptions = {
   },
   secret: process.env.NEXT_AUTH_SECRET,
   callbacks: {
-
+    //and also check the type in types folder to make the session and token more powerful 
     // signIn callback is used to handle user login with different providers
     // async signIn({ user, account }) {
     //   console.log("🚀 ~ signIn ~ account:", account)
