@@ -319,9 +319,10 @@ export async function POST(req: NextRequest) {
               id: newUser._id,
               name: newUser.name,
               email: newUser.email,
+              user:"bagwise"
           },
           process.env.NEXT_AUTH_SECRET!,
-          { expiresIn: '1h' }
+          { expiresIn: '1w' }
       );
         await newUser.save();
 

@@ -3,7 +3,6 @@ import { User } from '@/models/userModel'
 import { OTP } from '@/models/OTPModel'
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import { readFileSync } from 'fs';
 
 
 export async function POST(request:NextRequest){

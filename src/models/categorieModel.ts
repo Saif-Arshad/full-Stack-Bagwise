@@ -18,4 +18,4 @@ const categorieModel = new mongoose.Schema({
     timestamps: true
  }   
 )
-export const Categorie = mongoose.models || mongoose.model("Categorie",categorieModel)	
+export const Categorie = mongoose.models.Categorie || mongoose.model("Categorie",categorieModel)	

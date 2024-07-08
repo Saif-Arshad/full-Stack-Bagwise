@@ -16,6 +16,7 @@ import { BsPersonWorkspace } from "react-icons/bs";
 
 const DropdownMenu = ({ title, icon, links }:any) => {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -51,7 +52,11 @@ const DropdownMenu = ({ title, icon, links }:any) => {
             <li key={index}>
               <Link
                 href={link.href}
-                className="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11"
+                className={`flex items-center w-full font-normal transition duration-75 p-2 text-gray-900 rounded-lg ${
+                  pathname == link.href
+                    ? "bg-gray-200"
+                    : "even: hover:bg-gray-100"
+                } group`}
               >
                 {link.title}
               </Link>
@@ -84,8 +89,8 @@ function AdminSideBar() {
   ];
 
   const productDropdownLinks = [
-    { title: "Product", href: "/dashboard/products" },
     { title: "Category", href: "/dashboard/category" },
+    { title: "Product", href: "/dashboard/products" },
     { title: "Coupon Discount", href: "/dashboard/coupon" },
   ];
 
@@ -128,7 +133,7 @@ function AdminSideBar() {
 
       <aside
         id="default-sidebar"
-        className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform ${
+        className={`fixed overflow-x-scroll scrollbar top-0 left-0 z-40 w-64 h-screen transition-transform ${
           sidebarOpen ? "" : "-translate-x-full"
         } sm:translate-x-0`}
         aria-label="Sidebar"
