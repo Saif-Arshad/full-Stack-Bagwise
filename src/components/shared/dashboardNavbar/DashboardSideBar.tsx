@@ -138,7 +138,7 @@ function AdminSideBar() {
         } sm:translate-x-0`}
         aria-label="Sidebar"
       >
-        <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50">
+        <div className="h-full px-3 py-4 overflow-x-scroll scrollbar bg-gray-50">
           {sidebarOpen && window.innerWidth <= 640 && (
             <button
               onClick={toggleSidebar}

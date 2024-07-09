@@ -42,4 +42,10 @@ export interface FormData {
     .min(8, 'Password must be at least 8 characters')
     .required('Password is required'),
   })
-  
+  export const categorySchema =Yup.object().shape({
+
+    name: Yup.string().required('Category Name is required'),
+    description: Yup.string().required('Category description is required'),
+    
+
+  })
