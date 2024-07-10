@@ -19,7 +19,7 @@ function Category() {
           <FaPlus size={15} /> Add Category
         </button>
       </div>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal    isOpen={isOpen} onOpenChange={onOpenChange}>
         <CategoryModel />
       </Modal>
     </>
