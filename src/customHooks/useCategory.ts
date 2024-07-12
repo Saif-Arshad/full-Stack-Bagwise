@@ -3,14 +3,11 @@
 
 import { useState } from "react"
 import toast from "react-hot-toast"
-
+import { useToken } from "./useToken"
 export const useCategory = ()=>{
-    const getToken = () => {
-        return localStorage.getItem("bagwise_token");
-      };
+    const {token} = useToken()
     const doAddCategory = async(value:any,{resetForm}:any) => {
         console.log("🚀 ~ doAddCategory ~ value:", value)
-      const token = getToken()
         try {
             
             const addCategory = await fetch("/api/category/create",{
