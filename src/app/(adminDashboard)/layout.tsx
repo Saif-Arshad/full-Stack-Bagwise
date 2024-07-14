@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "@/app/globals.css";
-import AdminSideBar from "@/components/shared/dashboardNavbar/DashboardSideBar";
-import DashboardNavBar from "@/components/shared/dashboardNavbar/DashboardNavBar";
-
+import { Sidebar } from "@/components/shared/dashboard/sidebar";
+import {SideBarProviders} from '@/providers/SidebarMargin'
+import { Navbar } from "@/components/shared/dashboard/Navbar";
 export const metadata: Metadata = {
   title: "Dahboard | Bagwise",
   description: "Hey bagwisee",
@@ -15,13 +15,10 @@ export default function RootLayout({
 }>) {
   return (
    <>
-   <AdminSideBar/>
-   <div className="sm:ml-64">
-    <DashboardNavBar/>
-    <div className="pt-10">
+   <Navbar/>
+<SideBarProviders>
         {children}
-    </div>
-   </div>
+</SideBarProviders>
    </>
 
   );

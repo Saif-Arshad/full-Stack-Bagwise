@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { ASSETS } from "../../../../public/IMAGES";
+import { ASSETS } from "../../../public/IMAGES";
 import Link from "next/link";
 import Image from "next/image";
 import { TbLayoutDashboard } from "react-icons/tb";
