@@ -22,13 +22,11 @@ export default function RootLayout({
       <Auth>
 
       <ThemeProviders>
-      <NextUiProviders>
   <ReduxProviders>
   <Toaster
   position="top-right"/>
         {children}
   </ReduxProviders>
-  </NextUiProviders>
 </ThemeProviders>
 </Auth>
 
