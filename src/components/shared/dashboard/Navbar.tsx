@@ -1,8 +1,6 @@
 import { SheetMenu } from "@/components/shared/dashboard/sheet-menu";
+import { ModeToggle } from "./ModeToggle";
 
-interface NavbarProps {
-  title: string;
-}
 
 export function Navbar() {
   return (
@@ -10,10 +8,9 @@ export function Navbar() {
       <div className="mx-4 sm:mx-8 flex h-14 items-center">
         <div className="flex items-center space-x-4 lg:space-x-0">
           <SheetMenu />
-          <h1 className="font-bold">Hey</h1>
         </div>
-        <div className="flex flex-1 items-center space-x-2 justify-end">
-          {/* <ModeToggle /> */}
+        <div className="flex flex-1 items-center space-x-2 justify-end pr-5">
+          <ModeToggle />
           {/* <UserNav /> */}
         </div>
       </div>
