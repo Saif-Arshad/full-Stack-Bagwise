@@ -1,11 +1,10 @@
 import {
-    Tag,
-    Users,
-    Settings,
-    Bookmark,
-    SquarePen,
     LayoutGrid,
-    LucideIcon
+    LucideIcon,
+    MessageCircleCode,
+    BarChart2,
+    ShoppingBagIcon,
+    AudioWaveformIcon
   } from "lucide-react";
   
   type Submenu = {
@@ -38,65 +37,81 @@ import {
             active: pathname.includes("/dashboard"),
             icon: LayoutGrid,
             submenus: []
+          },
+          {
+            href: "/dashboard/inbox",
+            label: "Inbox",
+            active: pathname.includes("/dashboard/inbox"),
+            icon: MessageCircleCode,
+            submenus: []
+          },
+          {
+            href: "/dashboard/orders",
+            label: "Orders",
+            active: pathname.includes("/dashboard/orders"),
+            icon: BarChart2,
+            submenus: []
           }
         ]
       },
       {
-        groupLabel: "Contents",
+        groupLabel: "Products",
         menus: [
           {
             href: "",
-            label: "Posts",
-            active: pathname.includes("/posts"),
-            icon: SquarePen,
+            label: "Inventory",
+            active: pathname.includes("/dashboard/products"),
+            icon: ShoppingBagIcon,
             submenus: [
               {
-                href: "/posts",
-                label: "All Posts",
-                active: pathname === "/posts"
+                href: "/dahboard/category",
+                label: "Categories",
+                active: pathname === "/dahboard/category"
               },
               {
-                href: "/posts/new",
-                label: "New Post",
-                active: pathname === "/posts/new"
+                href: "/dashboard/products",
+                label: "Produts",
+                active: pathname === "/dashboard/products"
+              },
+              {
+                href: "/dashboard/coupons",
+                label: "Coupons",
+                active: pathname === "/dashboard/coupons"
               }
             ]
           },
-          {
-            href: "/categories",
-            label: "Categories",
-            active: pathname.includes("/categories"),
-            icon: Bookmark,
-            submenus: []
-          },
-          {
-            href: "/tags",
-            label: "Tags",
-            active: pathname.includes("/tags"),
-            icon: Tag,
-            submenus: []
-          }
         ]
       },
       {
-        groupLabel: "Settings",
+        groupLabel: "Management",
         menus: [
           {
-            href: "/users",
-            label: "Users",
-            active: pathname.includes("/users"),
-            icon: Users,
-            submenus: []
+            href: "",
+            label: "Admin Management",
+            active: pathname.includes("/dashboard/products"),
+            icon: AudioWaveformIcon,
+            submenus: [
+         
+              {
+                href: "/dashboard/admins",
+                label: "Admins Role",
+                active: pathname === "/dashboard/admins"
+              },
+              {
+                href: "/dashboard/permission",
+                label: "Permissions",
+                active: pathname === "/dashboard/permission"
+              },
+              {
+                href: "/dahboard/users",
+                label: "User Management",
+                active: pathname === "/dahboard/users"
+              },
+            ]
           },
-          {
-            href: "/account",
-            label: "Account",
-            active: pathname.includes("/account"),
-            icon: Settings,
-            submenus: []
-          }
         ]
-      }
+      },
+
     ];
   }
   
