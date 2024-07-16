@@ -64,9 +64,9 @@ import {
             icon: ShoppingBagIcon,
             submenus: [
               {
-                href: "/dahboard/category",
+                href: "/dashboard/category",
                 label: "Categories",
-                active: pathname === "/dahboard/category"
+                active: pathname === "/dashboard/category"
               },
               {
                 href: "/dashboard/products",
