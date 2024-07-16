@@ -1,0 +1,118 @@
+
+.rbc-calendar {
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .rbc-toolbar {
+    display: none;
+  }
+  .rbc-time-view .rbc-row {
+    min-height: 46px;
+}
+.rbc-event{
+    background-color: white !important;
+    border: 1px solid #dde5eb !important;
+    font-size: 15px !important;
+    box-sizing: border-box;
+    width: 90%;
+    /* overflow-x: scroll; */
+    margin: 0 5px;
+}
+.rbc-ellipsis, .rbc-show-more, .rbc-row-segment .rbc-event-content, .rbc-event-label  {
+    font-weight: 400 !important;
+
+}
+  
+  .rbc-month-view {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 2px 5px 9px rgba(0, 0, 0, 0.1);
+  }
+  .rbc-time-view{
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 1px;
+    box-shadow: 2px 5px 9px rgba(0, 0, 0, 0.1);
+  }
+  .rbc-header {
+    padding: 8px;
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
+  
+  .rbc-day-bg,
+  .rbc-time-view {
+    background-color: #fff;
+  }
+  
+  .rbc-today {
+    background-color: #eaf6ff;
+  }
+  
+  .rbc-event {
+    background-color: #ffeb3b;
+    border: none;
+    border-radius: 4px;
+    padding: 2px 6px;
+  }
+  
+  .rbc-event-label {
+    display: none;
+  }
+  
+  .rbc-event-content {
+    color: #000;
+    font-weight: bold;
+  }
+  
+  .rbc-month-row + .rbc-month-row {
+    border-top: 1px solid #e0e0e0;
+  }
+  
+  .rbc-day-slot .rbc-time-slot {
+    border-top: 1px solid #e0e0e0;
+  }
+  
+  .calendar-container {
+    width: 100%;
+    height: 130vh; /* Adjust as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
+  
+  .rbc-header {
+    background-color: #fff;
+  }
+  
+  @media (max-width: 768px) {
+    .calendar-container {
+      height: 150vh; 
+      width: 300vw;
+      overflow-y: auto;
+    }
+    .calender-main-container{
+        width: 100%;
+        overflow-y: auto;
+    }
+  }
+  
+    .flex-wrap {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .flex-wrap .text-2xl {
+      margin-bottom: 1rem;
+    }
+  
+    .flex-wrap .space-x-2 {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .flex-wrap .space-x-2 select,
+    .flex-wrap .space-x-2 button {
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+  
+  
