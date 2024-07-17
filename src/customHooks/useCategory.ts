@@ -5,10 +5,13 @@ import { useState,useContext } from "react"
 import {LoaderContext} from '@/context/LoadingContext';
 import toast from "react-hot-toast"
 import { useToken } from "./useToken"
+import { ThunkDispatch } from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
+import { getCategory } from "@/store/feature/Category.Slice";
 export const useCategory = ()=>{
     const {token} = useToken()
   const { setoverlayLoading } = useContext(LoaderContext);
-
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
     const doAddCategory = async(value:any,{resetForm}:any) => {
         const {name,description} = value
         try {
@@ -33,7 +36,18 @@ export const useCategory = ()=>{
             setoverlayLoading(false)
         }
     }
+    const doGetCategory = ()=>{
+        try {
+            // @ts-ignore
+            dispatch(getCategory(token))
+        } catch (error) {
+            console.log("🚀 ~ doGetCategory ~ error:", error)
+        }
+        
+
+    }
     return{
-        doAddCategory
+        doAddCategory,
+        doGetCategory
     }
 }
