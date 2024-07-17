@@ -1,17 +1,20 @@
 "use client"
 
-import React from 'react'
+import React,{useContext} from 'react'
 import {
     DialogClose,
     DialogContent,
     DialogHeader,
     DialogTitle,
   } from "@/components/ui/dialog"
+  import {LoaderContext} from '@/context/LoadingContext';
   import { useFormik } from "formik";
 import { useCategory } from '@/customHooks/useCategory';
 import { categorySchema } from '@/validations/YUP';
 import { Button } from '../ui/button';
 function CategoryModel() {
+  const { setoverlayLoading } = useContext(LoaderContext);
+  // setoverlayLoading(true)
     const {doAddCategory} = useCategory()
     const formik = useFormik({
       initialValues: {

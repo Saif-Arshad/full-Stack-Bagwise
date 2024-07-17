@@ -7,7 +7,7 @@ import { useToken } from "./useToken"
 export const useCategory = ()=>{
     const {token} = useToken()
     const doAddCategory = async(value:any,{resetForm}:any) => {
-        console.log("🚀 ~ doAddCategory ~ value:", value)
+        const {name,description} = value
         try {
             
             const addCategory = await fetch("/api/category/create",{
@@ -15,7 +15,7 @@ export const useCategory = ()=>{
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(value.name,value.description,token!),
+                body: JSON.stringify({name,description,token}),
             })
             const res  =  await addCategory.json()
             console.log("🚀 ~ doAddCategory ~ res:", res)

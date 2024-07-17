@@ -8,6 +8,7 @@ import Auth from "@/context/Auth";
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import './Calendar.css'
+import {LoaderProvider} from '@/context/LoadingContext'
 export const metadata: Metadata = {
   title: "Bagwise",
   description: "Hey bagwisee",
@@ -22,13 +23,14 @@ export default function RootLayout({
     <html lang="en">
       <body>
       <Auth>
-
       <ThemeProviders>
+        <LoaderProvider>
   <ReduxProviders>
   <Toaster
   position="top-right"/>
         {children}
   </ReduxProviders>
+  </LoaderProvider>
 </ThemeProviders>
 </Auth>
 
