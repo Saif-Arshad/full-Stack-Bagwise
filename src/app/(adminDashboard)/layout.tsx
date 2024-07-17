@@ -17,7 +17,12 @@ export default function RootLayout({
    <>
    <Navbar/>
 <SideBarProviders>
+    
+  <div className="w-full flex items-center justify-center">
+  <div className="w-11/12">
         {children}
+  </div>
+  </div>
 </SideBarProviders>
    </>
 

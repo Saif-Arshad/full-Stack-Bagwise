@@ -39,7 +39,7 @@ function CategoryModel() {
             value={formik.values.name}
             onChange={formik.handleChange}
             placeholder='Category Name'
-            className='w-full p-2 rounded-lg mb-2 mt-1 focus:ring-2 focus:ring-slate-200 outline-none border border-slate-500 dark:border-black'
+            className='w-full p-2 rounded-lg mb-2 mt-1 focus:border-slate-300  outline-none border border-slate-200 dark:border-black'
           />
           {formik.touched.name && formik.errors.name ? (
             <div className="text-red-600 text-sm">
@@ -55,7 +55,8 @@ function CategoryModel() {
             onChange={formik.handleChange}
             rows={5}
             placeholder='Category description'
-            className='w-full p-2 rounded-lg mb-2 mt-1 focus:ring-2 focus:ring-slate-200 outline-none border border-slate-500 dark:border-black'
+            className='w-full p-2 rounded-lg mb-2 mt-1 focus:border-slate-300  outline-none border border-slate-200 dark:border-black'
+
           />
           {formik.touched.description && formik.errors.description ? (
             <div className="text-red-600 text-sm">
