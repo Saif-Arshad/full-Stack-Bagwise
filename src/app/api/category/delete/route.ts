@@ -5,12 +5,16 @@ import jwt from 'jsonwebtoken';
 
 
 export async function DELETE(request: NextRequest) {
-    const {token,id} = await request.json();
-    ConnectDB()
+    const req = await request;
+    const token = req.headers.get("authorization");
+    console.log("🚀 ~ DELETE ~ token:", token)
+    const id = req.nextUrl.searchParams.get('id');
+    console.log("🚀 ~ DELETE ~ id:", id)
+    await ConnectDB()
 
         let decoded;
     try {
-        decoded = jwt.decode(token);
+        decoded = jwt.decode(token!);
         console.log("🚀 ~ POST ~ decoded:", decoded)
         
         if (!decoded) {

@@ -8,6 +8,7 @@ import { useToken } from "./useToken"
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import { getCategory } from "@/store/feature/Category.Slice";
+import axios from "axios";
 export const useCategory = ()=>{
     const {token} = useToken()
     console.log("🚀 ~ useCategory ~ token:", token)
@@ -41,6 +42,26 @@ export const useCategory = ()=>{
             setoverlayLoading(false)
         }
     }
+    const doDeleteCategory = async(id:any) => {
+        if(!token){
+            toast.error("Invalid Token")
+            return
+        }
+        console.log("🚀 ~ doDeleteCategory ~ id:", id)
+        axios.delete(`/api/category/delete?id=${id}`,{
+            headers: {
+                authorization:`${token}`
+
+            }
+    }).then(response=>(
+        console.log(response)
+    ))
+    .catch(error=>(
+        console.log(error)
+    )
+    )
+    
+    }
     const doGetCategory = ()=>{
         if(!token){
             toast.error("Invalid Token")
@@ -55,8 +76,10 @@ export const useCategory = ()=>{
         
 
     }
+
     return{
         doAddCategory,
-        doGetCategory
+        doGetCategory,
+        doDeleteCategory
     }
 }
