@@ -1,34 +1,57 @@
 "use client"
 
-import React,{useContext} from 'react'
+import React,{useState, useEffect} from 'react'
 import {
     DialogClose,
     DialogContent,
     DialogHeader,
     DialogTitle,
   } from "@/components/ui/dialog"
-  import {LoaderContext} from '@/context/LoadingContext';
   import { useFormik } from "formik";
 import { useCategory } from '@/customHooks/useCategory';
 import { categorySchema } from '@/validations/YUP';
 import { Button } from '../ui/button';
-function CategoryModel() {
-  const { setoverlayLoading } = useContext(LoaderContext);
-  // setoverlayLoading(true)
-    const {doAddCategory} = useCategory()
+function CategoryModel({selectedCategory}:any) {
+  const [isUpdate,setIsUpdate] = useState(false)
+  const [id,setId]= useState()
+    console.log("🚀 ~ CategoryModel ~ isUpdate:", isUpdate)
+    console.log("🚀 ~ CategoryModel ~ selectedCategory:", selectedCategory)
+    const {doAddCategory,doUpdateCategory} = useCategory()
+
+    const submitCategory = (value:any,action:any)=>{
+      if(isUpdate){
+        setIsUpdate(false)
+        doUpdateCategory(value,action,id)
+        console.log("hello world")
+      }else{
+        doAddCategory(value,action)
+      }
+
+    }
+
     const formik = useFormik({
       initialValues: {
         name: "",
         description: "",
       },
       validationSchema: categorySchema,
-      onSubmit: doAddCategory,
+      onSubmit: submitCategory,
     });
+    useEffect(()=>{
+      if(selectedCategory){
+        setIsUpdate(true)
+        formik.setFieldValue("name",selectedCategory.name)
+        formik.setFieldValue("description",selectedCategory.description)
+        setId(selectedCategory._id)
+      
+      }
+
+    },[selectedCategory])
   return (
   
     <DialogContent>
       <DialogHeader>
-        <DialogTitle>Add Category</DialogTitle>    
+        <DialogTitle>{isUpdate ? "Edit" : "Add"} Category</DialogTitle>    
       </DialogHeader>
       <form onSubmit={formik.handleSubmit}>
          <div className='flex flex-col'>
@@ -64,7 +87,7 @@ function CategoryModel() {
             </div>
           ) : null}
         </div>
-        <div className='flex items-center justify-end mt-6'> 
+        <div className='flex items-center justify-end mt-6 gap-x-2'> 
 
         <DialogClose asChild>
 
@@ -74,7 +97,7 @@ function CategoryModel() {
         </DialogClose>
         <DialogClose asChild>
           <Button variant={'primary'} disabled={!formik.isValid} type='submit' size={'lg'} >
-            save
+          {isUpdate ? "Update" : "Save"}
             </Button>
         </DialogClose>
         </div>

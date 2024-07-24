@@ -1,5 +1,5 @@
 import React from 'react'
-import { DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogClose } from "@/components/ui/dialog";
 import { Button } from '../ui/button';
 import { Trash2 } from 'lucide-react';
 import { useCategory } from '@/customHooks/useCategory';
@@ -21,9 +21,11 @@ function ViewModel({selectedCategory}:any) {
             <p className='my-4'><strong className="text-black mb-2">Description:</strong> <br/> {selectedCategory.description}</p>
             <p><strong className="text-black">Created At:</strong> {new Date(selectedCategory.createdAt).toLocaleString()}</p>
             <p><strong className="text-black">Updated At:</strong> {new Date(selectedCategory.updatedAt).toLocaleString()}</p>
+          <DialogClose asChild>
           <Button variant={'destructive'} className="my-6" onClick={deleteHandler}>
           <Trash2/>
           </Button>
+          </DialogClose>
           </div>
         )}
       </DialogDescription>

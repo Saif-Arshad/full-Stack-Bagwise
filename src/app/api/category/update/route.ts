@@ -5,10 +5,16 @@ import jwt from 'jsonwebtoken';
 
 
 export async function PATCH(request: NextRequest) {
-    const { name, description,token,id} = await request.json();
-    ConnectDB()
+    const value = await request.json();
+    console.log("🚀 ~ PATCH ~ description:", value)
+    const { name, description } = value. value;
+    const token = value.headers.authorization;
+    const id = request.nextUrl.searchParams.get('id');
+    console.log("🚀 ~ PATCH ~ id:", id)
+  await ConnectDB()
 
         let decoded;
+
     try {
         decoded = jwt.decode(token);
         console.log("🚀 ~ POST ~ decoded:", decoded)
@@ -35,7 +41,7 @@ export async function PATCH(request: NextRequest) {
 
     
     try {
-        const currentCategory = await Categorie.findByIdAndUpdate({id},
+        const currentCategory = await Categorie.findByIdAndUpdate({_id:id},
             {
             name,description
             },

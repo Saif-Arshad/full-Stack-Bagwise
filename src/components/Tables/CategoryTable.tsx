@@ -15,6 +15,7 @@ import {
 } from "@tanstack/react-table";
 import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import CategoryModel from "@/components/PopModels/CategoryModel";
 import { Input } from "@/components/ui/input";
 import {
   DropdownMenu,
@@ -32,6 +33,7 @@ import {
 } from "@/components/ui/table";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import ViewModel from "../PopModels/ViewModel";
+import { useCategory } from "@/customHooks/useCategory";
 export type Category = {
   _id: string;
   name: string;
@@ -44,6 +46,9 @@ function CategoryTable({ categoryData }: any) {
   const [loading, setLoading] = React.useState(true);
   const [selectedCategory, setSelectedCategory] = React.useState<Category | null>(null);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = React.useState(false);
+  const {doDeleteCategory} = useCategory()
+
 
   React.useEffect(() => {
     if (categoryData && categoryData.category.length) {
@@ -56,9 +61,23 @@ function CategoryTable({ categoryData }: any) {
     setSelectedCategory(category);
     setIsModalOpen(true);
   };
+  const handleDelete = (category: Category) => {
+    doDeleteCategory(category._id)
+  };
+  const handleEdit = (category: Category) => {
+    console.log("🚀 ~ handleEdit ~ category:", category)
+    setSelectedCategory(category);
+    setIsEditModalOpen(true);
+
+    // doDeleteCategory(category._id)
+  };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+    setSelectedCategory(null);
+  };
+  const handleEditCloseModal = () => {
+    setIsEditModalOpen(false);
     setSelectedCategory(null);
   };
 
@@ -89,6 +108,8 @@ function CategoryTable({ categoryData }: any) {
       cell: ({ row }) => (
         <div className="flex space-x-2">
           <Button variant="outline" onClick={() => handleView(row.original)}>View</Button>
+          <Button variant="destructive" onClick={() => handleDelete(row.original)}>Delete</Button>
+          <Button variant="edit" onClick={() => handleEdit(row.original)}>Edit</Button>
         </div>
       ),
     },
@@ -119,7 +140,7 @@ function CategoryTable({ categoryData }: any) {
 
   return (
     <div className="w-full">
-      <div className="flex items-center py-4">
+      <div className="flex items-center py-4 flex-col sm:flex-row">
         <Input
           placeholder="Filter categories..."
           value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
@@ -207,6 +228,9 @@ function CategoryTable({ categoryData }: any) {
       </div>
       <Dialog open={isModalOpen} onOpenChange={handleCloseModal}>
        <ViewModel selectedCategory={selectedCategory}  />
+      </Dialog>
+      <Dialog open={isEditModalOpen} onOpenChange={handleEditCloseModal}>
+       <CategoryModel selectedCategory={selectedCategory}  />
       </Dialog>
     </div>
   );
