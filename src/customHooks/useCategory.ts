@@ -10,9 +10,14 @@ import { useDispatch } from "react-redux";
 import { getCategory } from "@/store/feature/Category.Slice";
 export const useCategory = ()=>{
     const {token} = useToken()
+    console.log("🚀 ~ useCategory ~ token:", token)
   const { setoverlayLoading } = useContext(LoaderContext);
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
     const doAddCategory = async(value:any,{resetForm}:any) => {
+        if(!token){
+            toast.error("Invalid Token")
+             return
+        }
         const {name,description} = value
         try {
             setoverlayLoading(true)
@@ -37,6 +42,10 @@ export const useCategory = ()=>{
         }
     }
     const doGetCategory = ()=>{
+        if(!token){
+            toast.error("Invalid Token")
+             return
+        }
         try {
             // @ts-ignore
             dispatch(getCategory(token))

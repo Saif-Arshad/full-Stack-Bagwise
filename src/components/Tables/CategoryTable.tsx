@@ -30,67 +30,69 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import ViewModel from "../PopModels/ViewModel";
 export type Category = {
-  id: string;
-  categoryName: string;
+  _id: string;
+  name: string;
+  description: string;
+  createdAt: string;
+  updatedAt: string;
 };
 
-export const columns: ColumnDef<Category>[] = [
-  {
-    accessorKey: "id",
-    header: "Category ID",
-    cell: ({ row }) => <span>{row.getValue("id")}</span>,
-  },
-  {
-    accessorKey: "categoryName",
-    header: "Category Name",
-    cell: ({ row }) => <span>{row.getValue("categoryName")}</span>,
-  },
-  {
-    id: "actions",
-    header: "Actions",
-    cell: ({ row }) => (
-      <div className="flex space-x-2">
-        <Button variant="outline" onClick={() => console.log('Edit', row.original.id)}>Edit</Button>
-        <Button variant="outline" onClick={() => console.log('Delete', row.original.id)}>Delete</Button>
-        <Button variant="outline" onClick={() => console.log('View', row.original.id)}>View</Button>
-      </div>
-    ),
-  },
-];
+function CategoryTable({ categoryData }: any) {
+  const [loading, setLoading] = React.useState(true);
+  const [selectedCategory, setSelectedCategory] = React.useState<Category | null>(null);
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
 
-function CategoryTable() {
+  React.useEffect(() => {
+    if (categoryData && categoryData.category.length) {
+      console.log("🚀 ~ React.useEffect ~ categoryData:", categoryData)
+      setLoading(false);
+    }
+  }, [categoryData]);
+
+  const handleView = (category: Category) => {
+    setSelectedCategory(category);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedCategory(null);
+  };
+
   const data: Category[] = React.useMemo(
-    () => [
-      {
-        id: "1",
-        categoryName: "Category 1",
-      },
-      {
-        id: "2",
-        categoryName: "Category 2",
-      },
-      {
-        id: "3",
-        categoryName: "Category 3",
-      },
-      {
-        id: "4",
-        categoryName: "Category 4",
-      },
-      {
-        id: "5",
-        categoryName: "Category 5",
-      },
-    ],
-    []
+    () => categoryData && categoryData.category,
+    [categoryData]
   );
 
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
+
+  const columns: ColumnDef<Category>[] = [
+    {
+      accessorKey: "_id",
+      header: "Category ID",
+      cell: ({ row }) => <span>{row.getValue("_id")}</span>,
+    },
+    {
+      accessorKey: "name",
+      header: "Category Name",
+      cell: ({ row }) => <span>{row.getValue("name")}</span>,
+    },
+    {
+      id: "actions",
+      header: "Actions",
+      cell: ({ row }) => (
+        <div className="flex space-x-2">
+          <Button variant="outline" onClick={() => handleView(row.original)}>View</Button>
+        </div>
+      ),
+    },
+  ];
 
   const table = useReactTable({
     data,
@@ -111,14 +113,18 @@ function CategoryTable() {
     },
   });
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="w-full">
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter categories..."
-          value={(table.getColumn("categoryName")?.getFilterValue() as string) ?? ""}
+          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("categoryName")?.setFilterValue(event.target.value)
+            table.getColumn("name")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
@@ -170,7 +176,7 @@ function CategoryTable() {
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows?.length ? (
+            {table.getRowModel().rows.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
@@ -199,6 +205,9 @@ function CategoryTable() {
           </TableBody>
         </Table>
       </div>
+      <Dialog open={isModalOpen} onOpenChange={handleCloseModal}>
+       <ViewModel selectedCategory={selectedCategory}  />
+      </Dialog>
     </div>
   );
 }

@@ -19,10 +19,12 @@ export const getCategory = createAsyncThunk(
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization':` ${token}`,
+
           },
-        body:JSON.stringify({token:token})  
       };
       const response = await fetch(url, options);
+      console.log("hello")
       if (!response.ok) {
         throw new Error('Failed to fetch category');
       }
