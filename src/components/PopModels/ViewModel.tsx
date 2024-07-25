@@ -16,11 +16,11 @@ function ViewModel({selectedCategory}:any) {
       <DialogDescription>
         {selectedCategory && (
           <div className='flex flex-col items-start'>
-            <p className='my-2 mb-4'><strong className="text-black">ID:</strong> {selectedCategory._id}</p>
-            <p className='capitalize'><strong className="text-black">Category Name:</strong> {selectedCategory.name}</p>
-            <p className='my-4'><strong className="text-black mb-2">Description:</strong> <br/> {selectedCategory.description}</p>
-            <p><strong className="text-black">Created At:</strong> {new Date(selectedCategory.createdAt).toLocaleString()}</p>
-            <p><strong className="text-black">Updated At:</strong> {new Date(selectedCategory.updatedAt).toLocaleString()}</p>
+            <p className='my-2 mb-4'><strong className="text-black dark:text-white">ID:</strong> {selectedCategory._id}</p>
+            <p className='capitalize'><strong className="text-black dark:text-white">Category Name:</strong> {selectedCategory.name}</p>
+            <p className='my-4'><strong className="text-black dark:text-white mb-2">Description:</strong> <br/> {selectedCategory.description}</p>
+            <p><strong className="text-black dark:text-white">Created At:</strong> {new Date(selectedCategory.createdAt).toLocaleString()}</p>
+            <p><strong className="text-black dark:text-white">Updated At:</strong> {new Date(selectedCategory.updatedAt).toLocaleString()}</p>
           <DialogClose asChild>
           <Button variant={'destructive'} className="my-6" onClick={deleteHandler}>
           <Trash2/>

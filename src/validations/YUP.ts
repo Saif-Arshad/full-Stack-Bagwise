@@ -45,7 +45,16 @@ export interface FormData {
   export const categorySchema =Yup.object().shape({
 
     name: Yup.string().required('Category Name is required'),
-    description: Yup.string().required('Category description is required'),
-    
-
+    description: Yup.string().required('Category description is required'), 
   })
+  export const productSchema = Yup.object().shape({
+    name: Yup.string().required("Product Name is required"),
+    description: Yup.string().required("Product description is required"),
+    price: Yup.number()
+      .required("Price is required")
+      .moreThan(0, "Price must be greater than zero"),
+    category: Yup.string().required("Category is required"),
+    quantity: Yup.number()
+      .required("Quantity is required")
+      .moreThan(0, "Quantity must be greater than zero"),
+  });
